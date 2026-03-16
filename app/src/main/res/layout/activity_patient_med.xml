@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0f172a"
+    tools:context=".PatientMedActivity">
+
+    <!-- Top Toolbar -->
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#f8fafc" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Medications &amp; Care"
+            android:textColor="#f8fafc"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <ImageView
+            android:id="@+id/btnMore"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_more_vert"
+            app:tint="#f8fafc" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Medications"
+                android:textColor="#cbd5e1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
+
+            <!-- Medication 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_dark"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_icon_light_purple"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_pill"
+                    app:tint="#a855f7" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMedName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No active medications"
+                        android:textColor="#f8fafc"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="#94a3b8" />
+
+                        <TextView
+                            android:id="@+id/tvMedFrequency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="-"
+                            android:textColor="#94a3b8"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif"/>
+
+                        <TextView
+                            android:id="@+id/tvMedDuration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="-"
+                            android:textColor="#94a3b8"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+             <!-- Medication 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_dark"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_icon_light_blue"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_pill"
+                    app:tint="#3b82f6" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ibuprofen 400mg"
+                        android:textColor="#f8fafc"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="#94a3b8" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="As needed"
+                            android:textColor="#94a3b8"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif"/>
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="For pain"
+                            android:textColor="#94a3b8"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Post-Procedure Care"
+                android:textColor="#cbd5e1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
+
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_white"
+                android:gravity="center_vertical"
+                android:padding="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_circle_green"
+                        app:tint="#10b981" />
+                    
+                    <TextView
+                        android:id="@+id/tvCareInstructions"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="Standard oral hygiene maintenance suggested."
+                        android:textColor="#334155"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_circle_green"
+                        app:tint="#10b981" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="Brush gently around the treated area."
+                        android:textColor="#334155"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+                </LinearLayout>
+
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_close_circle_red"
+                        app:tint="#b91c1c"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="Avoid chewing hard or sticky foods on the treated side."
+                        android:textColor="#334155"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+                </LinearLayout>
+
+             </LinearLayout>
+
+             <LinearLayout
+                 android:id="@+id/btnEmergency"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="48dp"
+                 android:background="@drawable/bg_button_emergency"
+                 android:gravity="center"
+                 android:paddingVertical="14dp">
+
+                 <ImageView
+                     android:layout_width="20dp"
+                     android:layout_height="20dp"
+                     android:src="@drawable/ic_phone"
+                     app:tint="#b91c1c" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="8dp"
+                     android:text="Emergency Contact"
+                     android:textColor="#b91c1c"
+                     android:textSize="16sp"
+                     android:textStyle="bold"
+                     android:fontFamily="sans-serif"/>
+
+             </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f172a"
+        android:elevation="16dp"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_home"
+                app:tint="#ffffff" /> <!-- Active -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Home"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <LinearLayout
+             android:id="@+id/navCases"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_cases"
+                app:tint="#cbd5e1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Cases"
+                android:textColor="#cbd5e1"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <LinearLayout
+             android:id="@+id/navReports"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_reports"
+                app:tint="#cbd5e1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Reports"
+                android:textColor="#cbd5e1"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <LinearLayout
+             android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_profile"
+                app:tint="#cbd5e1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Profile"
+                android:textColor="#cbd5e1"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

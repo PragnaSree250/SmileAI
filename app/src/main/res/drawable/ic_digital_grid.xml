@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="400dp"
+    android:height="200dp"
+    android:viewportWidth="400"
+    android:viewportHeight="200">
+    
+    <!-- Vertical Perspective Lines -->
+    <path
+        android:pathData="M200,0 L-100,200 M200,0 L0,200 M200,0 L100,200 M200,0 L200,200 M200,0 L300,200 M200,0 L400,200 M200,0 L500,200"
+        android:strokeAlpha="0.3"
+        android:strokeWidth="1">
+        <aapt:attr name="android:strokeColor">
+             <gradient 
+                android:type="linear"
+                android:startX="200"
+                android:startY="0"
+                android:endX="200"
+                android:endY="200">
+                <item android:offset="0.0" android:color="#00000000"/>
+                <item android:offset="0.2" android:color="#22d3ee"/>
+                <item android:offset="1.0" android:color="#3b82f6"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Horizontal Lines (Grid) -->
+    <path
+        android:pathData="M0,50 L400,50 M0,90 L400,90 M0,140 L400,140 M0,200 L400,200"
+        android:strokeAlpha="0.3"
+        android:strokeWidth="1">
+         <aapt:attr name="android:strokeColor">
+             <gradient 
+                android:type="linear"
+                android:startX="200"
+                android:startY="0"
+                android:endX="200"
+                android:endY="200">
+                <item android:offset="0.0" android:color="#00000000"/>
+                <item android:offset="0.5" android:color="#22d3ee"/>
+                <item android:offset="1.0" android:color="#3b82f6"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

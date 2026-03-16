@@ -1,0 +1,9 @@
+flask
+flask-cors
+flask-mail
+mysql-connector-python
+flask-jwt-extended
+fpdf
+pillow
+numpy
+tflite-runtime

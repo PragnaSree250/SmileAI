@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    tools:context=".DentistSolutionSelectionActivity">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back_arrow"
+                android:tint="#ffffff" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:text="Treatment Solution"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <Space android:layout_width="60dp" android:layout_height="24dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toTopOf="@id/btnProceed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Specify Solution for Deficiency"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Deficiency Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#1e293b"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Identified Problem" android:textColor="#94a3b8" android:textSize="12sp" android:textAllCaps="true"/>
+                <TextView android:id="@+id/tvSolutionDeficiency" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fracture detected on tooth #14" android:textColor="#2dd4bf" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- Restoration Type -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Restoration Type" android:textColor="#cbd5e1" android:textSize="14sp" android:layout_marginBottom="8dp"/>
+            <Spinner
+                android:id="@+id/spinnerRestoration"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#ffffff"
+                android:layout_marginBottom="24dp"
+                android:padding="8dp"/>
+
+            <!-- Material Type -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Material Selection" android:textColor="#cbd5e1" android:textSize="14sp" android:layout_marginBottom="8dp"/>
+            <Spinner
+                android:id="@+id/spinnerMaterial"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#ffffff"
+                android:layout_marginBottom="24dp"
+                android:padding="8dp"/>
+
+             <!-- Advice/Notes -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Additional Clinical Notes" android:textColor="#cbd5e1" android:textSize="14sp" android:layout_marginBottom="8dp"/>
+            <EditText
+                android:id="@+id/etSolutionNotes"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#ffffff"
+                android:gravity="top"
+                android:hint="Enter any specific care notes..."
+                android:padding="16dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="32dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnProceed"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="24dp"
+        android:text="Generate Final Report"
+        android:textColor="#ffffff"
+        android:backgroundTint="#10b981"
+        android:textAllCaps="false"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

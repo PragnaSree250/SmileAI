@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    
+    <!-- Molar Body with Roots -->
+    <path
+        android:pathData="M25,35 Q30,20 50,28 Q70,20 75,35 Q90,50 85,65 Q82,80 75,95 L65,100 L50,85 L35,100 L25,95 Q18,80 15,65 Q10,50 25,35 Z">
+         <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="40"
+                android:centerY="40"
+                android:gradientRadius="60">
+                <item android:offset="0.0" android:color="#FFFFFF"/>
+                <item android:offset="0.4" android:color="#F8FAFC"/>
+                <item android:offset="0.8" android:color="#CBD5E1"/>
+                <item android:offset="1.0" android:color="#94A3B8"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    
+    <!-- Glossy Highlight (Top Left) -->
+    <path
+        android:pathData="M30,35 Q35,28 45,32 Q50,40 40,45 Q35,42 30,35 Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6"/>
+
+    <!-- Glossy Highlight (Top Right) -->
+    <path
+        android:pathData="M60,32 Q70,28 75,35 Q70,42 65,45 Q60,40 60,32 Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6"/>
+        
+</vector>

@@ -1,0 +1,48 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="200dp"
+    android:height="240dp"
+    android:viewportWidth="100"
+    android:viewportHeight="120">
+
+    <!-- Shield Background -->
+    <path
+        android:pathData="M50,115 C80,95 95,75 95,25 L50,10 L5,25 C5,75 20,95 50,115 Z"
+        android:fillColor="#1E3A8A"/>
+
+    <!-- Shield Gradient Overlay -->
+    <path
+        android:pathData="M50,115 C80,95 95,75 95,25 L50,10 L5,25 C5,75 20,95 50,115 Z"
+        android:fillAlpha="0.6">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="50"
+                android:startY="10"
+                android:endX="50"
+                android:endY="115">
+                <item android:offset="0.0" android:color="#3B82F6"/>
+                <item android:offset="1.0" android:color="#0EA5E9"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Shield Border -->
+    <path
+        android:pathData="M50,115 C80,95 95,75 95,25 L50,10 L5,25 C5,75 20,95 50,115 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#22D3EE"
+        android:fillColor="@android:color/transparent"/>
+
+    <!-- Tooth Shape -->
+    <path
+        android:pathData="M50,45 
+                          C60,35 70,38 70,55 
+                          C70,75 60,90 55,90 
+                          C52,90 50,82 50,75 
+                          C50,82 48,90 45,90 
+                          C40,90 30,75 30,55 
+                          C30,38 40,35 50,45 Z"
+        android:fillColor="#FFFFFF"/>
+
+</vector>

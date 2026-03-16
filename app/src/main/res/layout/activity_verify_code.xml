@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    tools:context=".VerifyCodeActivity">
+
+    <!-- Back Button -->
+    <LinearLayout
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Back"
+            android:textColor="#cbd5e1"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvEnterCodeTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Enter Verification Code"
+        android:textColor="#f8fafc"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvEnterCodeSubtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tvEnterCodeSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Enter the 6-digit code sent to your email"
+        android:textColor="#94a3b8"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvEnterCodeTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvEnterCodeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvEnterCodeTitle" />
+
+    <EditText
+        android:id="@+id/etCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bg_input_box"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:hint="- - - - - -"
+        android:inputType="number"
+        android:letterSpacing="0.5"
+        android:maxLength="6"
+        android:minHeight="56dp"
+        android:padding="16dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#64748b"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvEnterCodeSubtitle"
+        app:layout_constraintStart_toStartOf="@+id/tvEnterCodeSubtitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvEnterCodeSubtitle" />
+
+    <Button
+        android:id="@+id/btnVerify"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#0f766e"
+        android:fontFamily="sans-serif-medium"
+        android:minHeight="56dp"
+        android:text="Verify Code"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/etCode"
+        app:layout_constraintStart_toStartOf="@+id/etCode"
+        app:layout_constraintTop_toBottomOf="@+id/etCode" />
+
+    <TextView
+        android:id="@+id/tvResend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="sans-serif-medium"
+        android:text="Resend Code"
+        android:textColor="#10b981"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnVerify"
+        app:layout_constraintStart_toStartOf="@+id/btnVerify"
+        app:layout_constraintTop_toBottomOf="@+id/btnVerify" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

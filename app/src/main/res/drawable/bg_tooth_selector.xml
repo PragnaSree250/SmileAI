@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected State -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#ccfbf1" /> <!-- Mint/Light Cyan (Tailwind Teal-100 approx) -->
+            <corners android:radius="8dp" />
+            <stroke android:width="1.5dp" android:color="#2dd4bf" /> <!-- Teal-400 -->
+        </shape>
+    </item>
+    
+    <!-- Default State -->
+    <item>
+        <shape android:shape="rectangle">
+             <solid android:color="#1e293b" /> <!-- Slate-800 -->
+            <corners android:radius="8dp" />
+            <stroke android:width="1.5dp" android:color="#475569" /> <!-- Slate-600 -->
+        </shape>
+    </item>
+</selector>

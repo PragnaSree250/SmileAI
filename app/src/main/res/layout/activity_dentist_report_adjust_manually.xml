@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dentist_adjust_manually"
+    tools:context=".DentistReportAdjustManuallyActivity">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back_arrow"
+                android:tint="#ffffff" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Refine Planning Parameters"
+            android:textColor="#f8fafc"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnNotification"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_notification"
+            app:tint="#94a3b8" />
+
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_menu"
+            app:tint="#94a3b8" />
+
+        <LinearLayout
+            android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:textColor="#cbd5e1"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/footerParams"
+        app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+            
+            <!-- Dimensions Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#ffffff"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:layout_marginBottom="24dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dimensions"
+                    android:textColor="#0f172a"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="24dp"/>
+
+                <!-- Incisal Length -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Incisal Length" android:textColor="#334155" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10.5 mm" android:textColor="#64748b"/>
+                </LinearLayout>
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20"
+                    android:progress="10"
+                    android:progressTint="#0f172a"
+                    android:thumbTint="#0f172a"
+                    android:layout_marginBottom="24dp"/>
+
+                 <!-- Mesial-Distal Width -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Mesial-Distal Width" android:textColor="#334155" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8.2 mm" android:textColor="#64748b"/>
+                </LinearLayout>
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20"
+                    android:progress="8"
+                    android:progressTint="#0f172a"
+                    android:thumbTint="#0f172a"
+                    android:layout_marginBottom="24dp"/>
+
+                 <!-- Buccal-Lingual Width -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Buccal-Lingual Width" android:textColor="#334155" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7.1 mm" android:textColor="#64748b"/>
+                </LinearLayout>
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20"
+                    android:progress="7"
+                    android:progressTint="#0f172a"
+                    android:thumbTint="#0f172a"/>
+            </LinearLayout>
+
+            <!-- Clinical Findings Override Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#ffffff"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clinical Findings Override"
+                    android:textColor="#0f172a"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="24dp"/>
+
+                <!-- Hyperdontia -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hyperdontia Status" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustHyperdontia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="e.g. None or Detected"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Symmetry -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aesthetic Symmetry" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustSymmetry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="e.g. Optimal"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Golden Ratio -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Golden Ratio Match" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustGoldenRatio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="e.g. 1.618 Match"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"/>
+
+            </LinearLayout>
+
+            <!-- Clinical Narrative Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#ffffff"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:layout_marginTop="24dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clinical Narrative"
+                    android:textColor="#0f172a"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="24dp"/>
+
+                <!-- AI Reasoning -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AI Reasoning" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustReasoning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="Edit AI reasoning..."
+                    android:inputType="textMultiLine"
+                    android:minLines="2"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Risk Analysis -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Risk Analysis" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustRisk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="Edit risk analysis..."
+                    android:inputType="textMultiLine"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Aesthetic Prognosis -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aesthetic Prognosis" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustPrognosis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="Edit aesthetic prognosis..."
+                    android:inputType="textMultiLine"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Placement Strategy -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Placement Strategy" android:textColor="#334155" android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/etAdjustPlacement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:hint="Edit placement strategy..."
+                    android:inputType="textMultiLine"
+                    android:padding="12dp"
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Footer -->
+    <LinearLayout
+        android:id="@+id/footerParams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnApplyChanges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0f766e"
+            android:fontFamily="sans-serif-medium"
+            android:minWidth="160dp"
+            android:text="Apply Changes"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

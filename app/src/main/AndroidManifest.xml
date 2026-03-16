@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SmileAI"
+        android:usesCleartextTraffic="true">
+        
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SmileAI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".RoleSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistLoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistDashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistNotificationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistMenuBarActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistResetPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".CheckEmailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".VerifyCodeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistSchedule"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistAllCasesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistNewCase1Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+
+        <activity
+            android:name=".DentistNewCase3Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistNewCase4Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+
+        <activity
+            android:name=".DentistNewCase5Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientCaseActiveActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientCaseCompleteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientReportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientMedActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientRecentActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+        
+        <activity
+            android:name=".PatientViewAiAnalysisActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientAiRecommendationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientNotificationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientPrivacyAndSecurityActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientTermsAndConditionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientHelpAndSupportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientChangePasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientPasswordChangeSuccessfulActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientLogoutActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+         <activity
+            android:name=".PatientCaseAllActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientSetNewPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientVerifyCodeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientCheckEmailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientResetPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientDashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientLoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".CommonLogOutActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistCasesOverallReportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistCaseReportDownloadActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistExportFilesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistFinalizedReportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistApplyAndPreviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistReportAdjustManuallyActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistReport1Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientSignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+            
+        <activity
+            android:name=".DentistTermsConditionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistPrivacySecurityActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistHelpSupportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistSignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SmileAI" />
+            
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.simats.smileai.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+            
+    </application>
+
+</manifest>

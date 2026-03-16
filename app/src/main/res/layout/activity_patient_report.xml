@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_patient_dashboard"
+    tools:context=".PatientReportActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Reports"
+            android:textColor="#f8fafc"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_count_badge"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="4 Files"
+            android:textColor="#334155"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="24dp">
+
+            <!-- Active AI Report Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active AI Analysis"
+                android:textColor="#f8fafc"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Smile Deficiency Addressed -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Smile Deficiency Addressed"
+                    android:textColor="#2dd4bf"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+                
+                <TextView
+                    android:id="@+id/tvPatientReportReasoning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading treatment plan details..."
+                    android:textColor="#cbd5e1"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Risk Analysis -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#1aff0000"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clinical Risk Assessment"
+                    android:textColor="#fca5a5"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+                
+                <TextView
+                    android:id="@+id/tvPatientRiskAnalysis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Identifying potential risks..."
+                    android:textColor="#cbd5e1"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Aesthetic Prognosis -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#1a00ff00"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aesthetic Outcome Forecast"
+                    android:textColor="#86efac"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+                
+                <TextView
+                    android:id="@+id/tvPatientAestheticPrognosis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Analyzing aesthetic match..."
+                    android:textColor="#cbd5e1"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Placement Strategy -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#1a0000ff"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="32dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Optimal Placement Strategy"
+                    android:textColor="#7dd3fc"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+                
+                <TextView
+                    android:id="@+id/tvPatientPlacementStrategy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Determining placement logic..."
+                    android:textColor="#cbd5e1"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Prescribed Medications -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prescribed Medications"
+                    android:textColor="#2dd4bf"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+                
+                <TextView
+                    android:id="@+id/tvPatientMedications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No medications prescribed."
+                    android:textColor="#cbd5e1"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Care Instructions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="32dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Care Instructions"
+                    android:textColor="#2dd4bf"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+                
+                <TextView
+                    android:id="@+id/tvPatientCareInstructions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Standard oral hygiene maintenance suggested."
+                    android:textColor="#cbd5e1"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0f172a"
+        android:elevation="16dp"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_home"
+                app:tint="#cbd5e1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Home"
+                android:textColor="#cbd5e1"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <LinearLayout
+             android:id="@+id/navCases"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_cases"
+                app:tint="#cbd5e1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Cases"
+                android:textColor="#cbd5e1"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <LinearLayout
+             android:id="@+id/navReports"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_reports"
+                app:tint="#ffffff"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Reports"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <LinearLayout
+             android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_profile"
+                app:tint="#cbd5e1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Profile"
+                android:textColor="#cbd5e1"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

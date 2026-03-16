@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#0f766e" /> <!-- Adjust color based on visual match, user said 'teal' or implied by image context -->
+    <corners android:radius="8dp" />
+</shape>

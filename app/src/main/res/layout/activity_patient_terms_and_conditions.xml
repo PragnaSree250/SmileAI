@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_patient_dashboard"
+    tools:context=".PatientTermsAndConditionsActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="#000000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Terms &amp; Conditions"
+            android:textColor="#f8fafc"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="24dp">
+
+            <!-- Last Updated Card -->
+            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="12dp"
+                 app:cardBackgroundColor="#f8fafc"
+                 app:cardCornerRadius="16dp"
+                 app:cardElevation="0dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="16dp"
+                     android:gravity="center"
+                     android:orientation="vertical">
+                     
+                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last Updated" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
+                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="February 1, 2024" android:textColor="#0f172a" android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="4dp" android:fontFamily="sans-serif"/>
+                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 1. Acceptance of Terms -->
+            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 app:cardBackgroundColor="#ffffff"
+                 app:cardCornerRadius="16dp"
+                 app:cardElevation="0dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="20dp"
+                     android:orientation="vertical">
+                     
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:gravity="center_vertical"
+                         android:orientation="horizontal">
+                         
+                         <LinearLayout
+                             android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:background="@drawable/bg_icon_circle_blue_light"
+                             android:gravity="center">
+                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_document_blue"/>
+                         </LinearLayout>
+                         
+                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="1. Acceptance of Terms" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
+                     </LinearLayout>
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="12dp"
+                         android:text="By accessing and using the DentAI Care application, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions."
+                         android:textColor="#64748b"
+                         android:textSize="14sp"
+                         android:lineHeight="20sp"
+                         android:fontFamily="sans-serif"/>
+                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 2. Privacy & Data Protection -->
+            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 app:cardBackgroundColor="#ffffff"
+                 app:cardCornerRadius="16dp"
+                 app:cardElevation="0dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="20dp"
+                     android:orientation="vertical">
+                     
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:gravity="center_vertical"
+                         android:orientation="horizontal">
+                         
+                         <LinearLayout
+                             android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:background="@drawable/bg_icon_circle_green_light"
+                             android:gravity="center">
+                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_shield_check_green"/>
+                         </LinearLayout>
+                         
+                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="2. Privacy &amp; Data Protection" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
+                     </LinearLayout>
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="12dp"
+                         android:text="We are committed to protecting your personal health information. All data is encrypted and stored securely in compliance with HIPAA regulations."
+                         android:textColor="#64748b"
+                         android:textSize="14sp"
+                         android:lineHeight="20sp"
+                         android:fontFamily="sans-serif"/>
+                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 3. Use of Services -->
+            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 app:cardBackgroundColor="#ffffff"
+                 app:cardCornerRadius="16dp"
+                 app:cardElevation="0dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="20dp"
+                     android:orientation="vertical">
+                     
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:gravity="center_vertical"
+                         android:orientation="horizontal">
+                         
+                         <LinearLayout
+                             android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:background="@drawable/bg_icon_circle_purple_light"
+                             android:gravity="center">
+                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_scale_purple"/>
+                         </LinearLayout>
+                         
+                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="3. Use of Services" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
+                     </LinearLayout>
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="12dp"
+                         android:text="Our AI-powered dental analysis is intended to assist dental professionals and should not replace professional medical advice."
+                         android:textColor="#64748b"
+                         android:textSize="14sp"
+                         android:lineHeight="20sp"
+                         android:fontFamily="sans-serif"/>
+                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 4. Limitations of Liability -->
+            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 app:cardBackgroundColor="#ffffff"
+                 app:cardCornerRadius="16dp"
+                 app:cardElevation="0dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="20dp"
+                     android:orientation="vertical">
+                     
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:gravity="center_vertical"
+                         android:orientation="horizontal">
+                         
+                         <LinearLayout
+                             android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:background="@drawable/bg_icon_circle_orange_light"
+                             android:gravity="center">
+                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_alert_orange"/>
+                         </LinearLayout>
+                         
+                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="4. Limitations of Liability" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
+                     </LinearLayout>
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="12dp"
+                         android:text="DentAI Care provides tools to assist in dental care management but is not liable for any decisions made based on the information provided."
+                         android:textColor="#64748b"
+                         android:textSize="14sp"
+                         android:lineHeight="20sp"
+                         android:fontFamily="sans-serif"/>
+                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- 5. Contact Information -->
+            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 app:cardBackgroundColor="#ffffff"
+                 app:cardCornerRadius="16dp"
+                 app:cardElevation="0dp">
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="20dp"
+                     android:orientation="vertical">
+                     
+                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5. Contact Information" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
+
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="12dp"
+                         android:text="For questions about these Terms and Conditions, please contact our legal team at"
+                         android:textColor="#64748b"
+                         android:textSize="14sp"
+                         android:lineHeight="20sp"
+                         android:fontFamily="sans-serif"/>
+                         
+                     <TextView
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="4dp"
+                         android:text="legal@dentaicare.com"
+                         android:textColor="#3b82f6"
+                         android:textSize="14sp"
+                         android:textStyle="bold"
+                         android:fontFamily="sans-serif"/>
+                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="By using DentAI Care, you agree to these terms"
+                android:textColor="#94a3b8"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

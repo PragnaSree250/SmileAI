@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer Glow (Shadow) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00000000"/>
+        </shape>
+    </item>
+    
+    <!-- Shield Shape -->
+    <!-- Since we can't easily draw a path in specific shape drawable without vector, 
+         we will use the existing vector as a basis but tinted/styled in layout. 
+         However, to get the "Glass" look, we need a shape. 
+         Let's try to simulate the glass shield backing with a vector drawable that includes the fill. -->
+</layer-list>

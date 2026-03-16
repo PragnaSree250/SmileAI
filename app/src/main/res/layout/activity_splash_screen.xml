@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    tools:context=".SplashActivity">
+
+    <!-- Digital Grid Floor -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_digital_grid"
+        android:alpha="1.0"/>
+
+    <!-- Hexagon Pattern (Left) -->
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_hexagon_pattern"
+        android:layout_marginStart="-50dp"
+        android:alpha="0.3"
+        app:tint="#22d3ee"/>
+
+    <!-- Hexagon Pattern (Right) -->
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_hexagon_pattern"
+        android:layout_marginEnd="-50dp"
+        android:scaleX="-1"
+        android:alpha="0.3"
+        app:tint="#22d3ee"/>
+
+    <!-- Center Content -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="60dp">
+
+        <!-- Shield Container -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp">
+            
+            <!-- Shield Glow -->
+            <ImageView
+                android:layout_width="220dp"
+                android:layout_height="260dp"
+                android:src="@drawable/ic_shield_glass"
+                android:layout_gravity="center"/>
+                
+            <!-- Dental Visualization -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_tooth_visual"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"/>
+        </FrameLayout>
+
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Smile AI"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.05"
+            android:shadowColor="#22d3ee"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="10"/>
+
+        <!-- Tagline -->
+        <TextView
+            android:id="@+id/tvTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Your Dental AI Companion"
+            android:textSize="18sp"
+            android:textColor="#bae6fd"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.03"/>
+
+    </LinearLayout>
+
+    <!-- Get Started Button -->
+    <Button
+        android:id="@+id/btnGetStarted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="48dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/bg_button_get_started"
+        android:fontFamily="sans-serif-medium"
+        android:text="Get Started"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:backgroundTint="@null" 
+        android:elevation="8dp"
+        android:stateListAnimator="@null"/>
+
+</RelativeLayout>

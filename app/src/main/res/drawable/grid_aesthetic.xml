@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Center Vertical Line -->
+    <item>
+        <shape android:shape="rectangle">
+            <size android:width="1dp" />
+            <solid android:color="#40FFFFFF" />
+        </shape>
+    </item>
+    
+    <!-- Horizon Line (Golden Ratio 1) -->
+    <item android:top="200dp">
+        <shape android:shape="rectangle">
+            <size android:height="1dp" />
+            <solid android:color="#40FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Horizon Line (Golden Ratio 2) -->
+    <item android:bottom="200dp">
+        <shape android:shape="rectangle">
+            <size android:height="1dp" />
+            <solid android:color="#40FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Vertical Lines for Smile Width -->
+    <item android:left="80dp" android:right="80dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="#602dd4bf" />
+        </shape>
+    </item>
+</layer-list>

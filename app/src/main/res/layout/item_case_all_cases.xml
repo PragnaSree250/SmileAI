@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/card_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/tvCaseId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:fontFamily="sans-serif-medium"
+        android:text="C-1024"
+        android:textColor="#2dd4bf"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPatientFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Sarah"
+            android:textColor="#f8fafc"
+            android:textSize="14sp" />
+         <TextView
+            android:id="@+id/tvPatientLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Johnson"
+            android:textColor="#f8fafc"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRestorationType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:text="Crown"
+        android:textColor="#cbd5e1"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvToothNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="14"
+        android:textColor="#cbd5e1"
+        android:textSize="14sp" />
+
+     <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:background="@drawable/bg_status_blue"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+         android:paddingStart="8dp"
+         android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="In Progress"
+        android:textColor="#ffffff"
+        android:textSize="10sp" />
+</LinearLayout>

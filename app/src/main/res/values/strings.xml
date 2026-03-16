@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SmileAI</string>
+    <string name="close_menu">Close menu</string>
+    <string name="dashboard_icon">Dashboard icon</string>
+    <string name="cases_icon">Cases icon</string>
+    <string name="notifications_icon">Notifications icon</string>
+    <string name="profile_icon">Profile icon</string>
+    <string name="settings_icon">Settings icon</string>
+    <string name="logout_icon">Logout icon</string>
+    <string name="dr_initials">DR</string>
+    <string name="dr_name">Dr. Smith</string>
+    <string name="dentist_title">Dentist</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="cases_title">Cases</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="profile_title">Profile</string>
+    <string name="settings_title">Settings</string>
+    <string name="logout_title">Logout</string>
+</resources>
