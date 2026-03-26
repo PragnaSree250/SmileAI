@@ -99,6 +99,41 @@
                 android:layout_marginBottom="24dp"
                 android:padding="8dp"/>
 
+            <!-- Smile Library -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Aesthetic Blueprint" android:textColor="#cbd5e1" android:textSize="14sp" android:layout_marginBottom="8dp"/>
+            <LinearLayout
+                android:id="@+id/btnOpenSmileLibrary"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#334155"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_smile_logo"
+                    app:tint="#38bdf8"/>
+                <TextView
+                    android:id="@+id/tvSelectedSmileShape"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="Select Smile Template..."
+                    android:textColor="#f8fafc"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="#94a3b8"/>
+            </LinearLayout>
+
              <!-- Advice/Notes -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Additional Clinical Notes" android:textColor="#cbd5e1" android:textSize="14sp" android:layout_marginBottom="8dp"/>
             <EditText

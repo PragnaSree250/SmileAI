@@ -12,6 +12,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.Part
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.DELETE
 import retrofit2.http.PartMap
 
 interface ApiService {
@@ -142,5 +143,33 @@ interface ApiService {
     @GET("cases/{case_id}/analyze")
     fun analyzeCase(
         @Path("case_id") caseId: Int
+    ): Call<ApiResponse>
+
+    @GET("timeline/{case_id}")
+    fun getTimeline(
+        @Path("case_id") caseId: Int
+    ): Call<TimelineResponse>
+
+    @POST("appointments")
+    fun createAppointment(
+        @Body appointment: Appointment
+    ): Call<ApiResponse>
+
+    @DELETE("profile/delete")
+    fun deleteProfile(): Call<ApiResponse>
+
+    @Multipart
+    @POST("profile/photo")
+    fun uploadProfilePhoto(
+        @Part file: MultipartBody.Part
+    ): Call<ApiResponse>
+    @GET("appointments/patient/{patient_id}")
+    fun getPatientAppointments(
+        @Path("patient_id") patientId: String
+    ): Call<AppointmentResponse>
+
+    @POST("emergency-message")
+    fun sendEmergencyMessage(
+        @Body messageData: Map<String, String>
     ): Call<ApiResponse>
 }

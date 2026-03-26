@@ -62,6 +62,11 @@ class DentistLoginActivity : ComponentActivity() {
                 return@setOnClickListener
             }
 
+            if (email.contains("@") && (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() || !email.endsWith(".com"))) {
+                Toast.makeText(this, "Please enter a valid email address ending in .com", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val requestData = mapOf(
                 "email" to email, 
                 "password" to password

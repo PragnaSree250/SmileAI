@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.simats.smileai.network.RetrofitClient
 
 class CommonLogOutActivity : ComponentActivity() {
 
@@ -27,8 +28,12 @@ class CommonLogOutActivity : ComponentActivity() {
         }
 
         btnLogout.setOnClickListener {
+            val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)
+            sharedPref.edit().clear().apply()
+            RetrofitClient.authToken = null
+            
             Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, RoleSelectionActivity::class.java)
+            val intent = Intent(this, SmartLoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish() 

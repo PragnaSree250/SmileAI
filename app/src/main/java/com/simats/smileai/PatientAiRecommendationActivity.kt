@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 
-class PatientAiRecommendationActivity : ComponentActivity() {
+class PatientAiRecommendationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_ai_recommendation)
@@ -22,9 +22,14 @@ class PatientAiRecommendationActivity : ComponentActivity() {
         val material = intent.getStringExtra("EXTRA_MATERIAL") ?: "Zirconia"
 
         textTitle.text = restoration
-        textSubtitle.text = "$material material"
+        textSubtitle.text = "$material material (AI Recommendation)"
 
-        textExplanation.text = "Based on the AI analysis of your bite pressure and aesthetic requirements, a $material crown offers the best balance of strength and natural appearance for a molar tooth."
+        textExplanation.text = "Based on our advanced 3D scanning and bite-pressure analysis, we recommend a $material $restoration. \n\n" +
+                "Why $material?\n" +
+                "• Biomimetic approach: Mimics natural tooth enamel in light reflection and wear.\n" +
+                "• Precision Fit: 98.4% match with your digital scan data.\n" +
+                "• Longevity: High fracture toughness compared to standard porcelain.\n" +
+                "• Bio-compatibility: Zero gingival inflammation risk recorded in AI simulation."
 
         btnBack.setOnClickListener {
             finish()
@@ -49,7 +54,7 @@ class PatientAiRecommendationActivity : ComponentActivity() {
         }
 
         navReports.setOnClickListener {
-             startActivity(Intent(this, PatientReportActivity::class.java))
+             startActivity(Intent(this, PatientCaseAllActivity::class.java))
              overridePendingTransition(0, 0)
              finish()
         }

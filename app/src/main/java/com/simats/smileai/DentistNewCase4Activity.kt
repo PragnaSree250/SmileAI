@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import java.io.File
@@ -21,12 +21,32 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class DentistNewCase4Activity : ComponentActivity() {
+class DentistNewCase4Activity : AppCompatActivity() {
 
     private var faceImageUri: Uri? = null
     private var intraImageUri: Uri? = null
     private var currentPhotoPath: String? = null
     private var isFaceUpload: Boolean = true // Track which section is being uploaded
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("currentPhotoPath", currentPhotoPath)
+        outState.putParcelable("faceImageUri", faceImageUri)
+        outState.putParcelable("intraImageUri", intraImageUri)
+        outState.putBoolean("isFaceUpload", isFaceUpload)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        currentPhotoPath = savedInstanceState.getString("currentPhotoPath")
+        faceImageUri = savedInstanceState.getParcelable("faceImageUri")
+        intraImageUri = savedInstanceState.getParcelable("intraImageUri")
+        isFaceUpload = savedInstanceState.getBoolean("isFaceUpload")
+        
+        // Restore previews if data exists
+        faceImageUri?.let { updateFacePreview(it) }
+        intraImageUri?.let { updateIntraPreview(it) }
+    }
 
     private lateinit var ivPreviewFace: ImageView
     private lateinit var ivUploadIconFace: ImageView
@@ -52,7 +72,11 @@ class DentistNewCase4Activity : ComponentActivity() {
     private val cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             val file = File(currentPhotoPath ?: return@registerForActivityResult)
-            val uri = Uri.fromFile(file)
+            val uri = FileProvider.getUriForFile(
+                this,
+                "com.simats.smileai.fileprovider",
+                file
+            )
             
             if (isFaceUpload) {
                 faceImageUri = uri
@@ -100,6 +124,7 @@ class DentistNewCase4Activity : ComponentActivity() {
                 putExtra("EXTRA_SHADE", selectedShade)
                 faceImageUri?.let { putExtra("EXTRA_FACE_IMAGE_URI", it.toString()) }
                 intraImageUri?.let { putExtra("EXTRA_INTRA_IMAGE_URI", it.toString()) }
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
             startActivity(intent)
         }

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SmileAI" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.SmileAI" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Main theme colors -->
+        <item name="colorPrimary">#2dd4bf</item>
+        <item name="colorPrimaryVariant">#0d9488</item>
+        <item name="colorOnPrimary">#ffffff</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">#3b82f6</item>
+        <item name="colorSecondaryVariant">#2563eb</item>
+        <item name="colorOnSecondary">#ffffff</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">#0f172a</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
 </resources>

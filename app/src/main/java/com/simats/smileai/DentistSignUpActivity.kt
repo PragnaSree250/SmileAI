@@ -21,9 +21,8 @@ class DentistSignUpActivity : ComponentActivity() {
 
         val etFullName = findViewById<EditText>(R.id.etFullName)
         val etEmail = findViewById<EditText>(R.id.etEmail)
-        val etSpecialization = findViewById<EditText>(R.id.etSpecialization)
-        val etClinicAddress = findViewById<EditText>(R.id.etClinicAddress)
         val etPassword = findViewById<EditText>(R.id.etPassword)
+
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnBack = findViewById<LinearLayout>(R.id.btnBack)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
@@ -40,13 +39,19 @@ class DentistSignUpActivity : ComponentActivity() {
         btnSignUp.setOnClickListener {
             val name = etFullName.text.toString().trim()
             val email = etEmail.text.toString().trim()
-            val specialization = etSpecialization.text.toString().trim()
-            val clinicAddress = etClinicAddress.text.toString().trim()
             val password = etPassword.text.toString()
+
             val confirmPassword = etConfirmPassword.text.toString()
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() || !email.endsWith(".com")) {
+                Toast.makeText(this, "Please enter a valid email address ending in .com", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -59,20 +64,19 @@ class DentistSignUpActivity : ComponentActivity() {
             val requestData = mapOf(
                 "full_name" to name,
                 "email" to email,
-                "specialization" to specialization,
-                "clinic_address" to clinicAddress,
                 "password" to password,
-                "role" to "dentist" // ✅ ADDED ROLE
+                "role" to "dentist" 
             )
 
             // Perform API Call
             RetrofitClient.instance.signUp(requestData).enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful && response.body()?.status == "success") {
-                        Toast.makeText(this@DentistSignUpActivity, "Sign Up Successful!", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@DentistSignUpActivity, DentistDashboardActivity::class.java)
+                        Toast.makeText(this@DentistSignUpActivity, "Sign Up Successful! Please Login.", Toast.LENGTH_LONG).show()
+                        val intent = Intent(this@DentistSignUpActivity, SmartLoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
-                        finishAffinity()
+                        finish()
                     } else {
                         val errorBody = response.errorBody()?.string()
                         val errorMsg = if (!errorBody.isNullOrEmpty()) {

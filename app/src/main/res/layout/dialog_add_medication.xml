@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#ffffff">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prescribe Specific Medication"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#0f172a"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/etMedName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Medication Name (e.g. Amoxicillin)"
+        android:inputType="text"
+        android:padding="12dp"
+        android:background="#f1f5f9"
+        android:layout_marginBottom="12dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/etMedDosage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Dosage"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="#f1f5f9"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="12dp"/>
+        <EditText
+            android:id="@+id/etMedFrequency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Frequency"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="#f1f5f9"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="12dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/etMedDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Duration"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="#f1f5f9"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="12dp"/>
+        <EditText
+            android:id="@+id/etMedNotes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Notes"
+            android:inputType="text"
+            android:padding="12dp"
+            android:background="#f1f5f9"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="12dp"/>
+    </LinearLayout>
+
+</LinearLayout>

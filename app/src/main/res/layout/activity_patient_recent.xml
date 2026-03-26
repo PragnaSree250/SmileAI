@@ -34,6 +34,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvHeaderCaseId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Case #4829"
@@ -145,6 +146,7 @@
                                      android:textSize="14sp"
                                      android:fontFamily="sans-serif"/>
                                  <TextView
+                                     android:id="@+id/tvStep1Date"
                                      android:layout_width="wrap_content"
                                      android:layout_height="wrap_content"
                                      android:text="Feb 12, 09:30 AM"
@@ -209,6 +211,7 @@
                                      android:textSize="14sp"
                                      android:fontFamily="sans-serif"/>
                                  <TextView
+                                     android:id="@+id/tvStep2Date"
                                      android:layout_width="wrap_content"
                                      android:layout_height="wrap_content"
                                      android:text="Feb 12, 10:15 AM"
@@ -272,6 +275,7 @@
                                      android:textSize="14sp"
                                      android:fontFamily="sans-serif"/>
                                  <TextView
+                                     android:id="@+id/tvStep3Date"
                                      android:layout_width="wrap_content"
                                      android:layout_height="wrap_content"
                                      android:text="In Progress"
@@ -326,6 +330,7 @@
                                      android:textSize="14sp"
                                      android:fontFamily="sans-serif"/>
                                  <TextView
+                                     android:id="@+id/tvStep4Date"
                                      android:layout_width="wrap_content"
                                      android:layout_height="wrap_content"
                                      android:text="Est. Feb 14"

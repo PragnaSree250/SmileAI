@@ -56,6 +56,11 @@ class PatientLoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (email.contains("@") && (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() || !email.endsWith(".com"))) {
+                Toast.makeText(this, "Please enter a valid email address ending in .com", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val requestData = mapOf("email" to email, "password" to password)
 
             RetrofitClient.instance.login(requestData).enqueue(object : Callback<ApiResponse> {
@@ -75,6 +80,9 @@ class PatientLoginActivity : AppCompatActivity() {
                                     putString("user_role", user.role)
                                     putString("patient_clinical_id", user.patient_id ?: "")
                                     putString("user_name", user.full_name)
+                                    
+                                    // Initialize RetrofitClient token
+                                    RetrofitClient.authToken = "Bearer $token"
                                     
                                     // Handle Remember Me
                                     if (rememberMe) {

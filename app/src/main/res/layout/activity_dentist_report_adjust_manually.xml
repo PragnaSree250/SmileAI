@@ -301,6 +301,16 @@
                     android:padding="12dp"
                     android:textColor="#1e293b"
                     android:textSize="14sp"
+                    android:layout_marginBottom="24dp"/>
+
+                 <Button
+                    android:id="@+id/btnPrescribeMedication"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#0f172a"
+                    android:text="Prescribe Medication"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
                     android:layout_marginBottom="8dp"/>
 
             </LinearLayout>

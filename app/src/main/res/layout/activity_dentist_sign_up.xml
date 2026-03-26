@@ -36,13 +36,10 @@
             android:layout_height="24dp" />
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_icon_teal"
-            android:padding="12dp"
-            android:src="@drawable/ic_person"
-            android:tint="#ffffff" />
+            android:src="@drawable/ic_smile_logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,41 +89,15 @@
                 android:fontFamily="sans-serif"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:importantForAutofill="yes"
+                android:autofillHints="emailAddress"
                 android:minHeight="48dp"
                 android:padding="16dp"
                 android:textColor="#ffffff"
                 android:textColorHint="#94a3b8"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/etSpecialization"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_input_box"
-                android:fontFamily="sans-serif"
-                android:hint="Specialization (e.g., Orthodontics)"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#94a3b8"
-                android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/etClinicAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_input_box"
-                android:fontFamily="sans-serif"
-                android:hint="Clinic Address"
-                android:inputType="textPostalAddress"
-                android:minHeight="48dp"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#94a3b8"
-                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/etPassword"

@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Privacy &amp; Security"
+            android:text="Privacy &amp; Policy"
             android:textColor="#f8fafc"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -50,7 +50,7 @@
             android:paddingHorizontal="24dp"
             android:paddingBottom="24dp">
 
-            <!-- Account Protected Card -->
+            <!-- Privacy Policy Content Card -->
             <androidx.cardview.widget.CardView
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
@@ -63,188 +63,121 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:padding="24dp"
-                     android:gravity="center_vertical"
-                     android:orientation="horizontal">
+                     android:orientation="vertical">
                      
-                     <LinearLayout
-                         android:layout_width="56dp"
-                         android:layout_height="56dp"
-                         android:background="@drawable/bg_icon_circle_green_light"
-                         android:gravity="center">
-                         <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_shield_check_green"/>
-                     </LinearLayout>
+                     <TextView 
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:text="Smile AI Privacy Policy" 
+                         android:textColor="#0f172a" 
+                         android:textSize="18sp" 
+                         android:textStyle="bold" 
+                         android:fontFamily="sans-serif"/>
 
-                     <LinearLayout
-                         android:layout_width="0dp"
-                         android:layout_height="wrap_content"
-                         android:layout_weight="1"
-                         android:layout_marginStart="20dp"
-                         android:orientation="vertical">
-                         
-                         <LinearLayout
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:gravity="center_vertical"
-                             android:orientation="horizontal">
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Account Protected" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:text="Secure" android:textColor="#166534" android:textSize="10sp" android:textStyle="bold" android:background="@drawable/bg_badge_green_light" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:fontFamily="sans-serif"/>
-                         </LinearLayout>
-                         
-                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Your data is encrypted and secure" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
-                     </LinearLayout>
-                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                     <TextView 
+                         android:layout_width="wrap_content" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="8dp"
+                         android:text="Last Updated: March 2026" 
+                         android:textColor="#94a3b8" 
+                         android:textSize="12sp" 
+                         android:fontFamily="sans-serif"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Security Settings"
-                android:textColor="#94a3b8"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="sans-serif"/>
+                     <View 
+                         android:layout_width="match_parent" 
+                         android:layout_height="1dp" 
+                         android:background="#f1f5f9" 
+                         android:layout_marginVertical="16dp"/>
 
-            <!-- Security Settings Card -->
-            <androidx.cardview.widget.CardView
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 app:cardBackgroundColor="#ffffff"
-                 app:cardCornerRadius="24dp"
-                 app:cardElevation="0dp">
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:text="Your privacy is important to us. Smile AI is committed to protecting your personal and clinical data through advanced encryption and secure handling practices." 
+                         android:textColor="#334155" 
+                         android:textSize="14sp" 
+                         android:lineSpacingExtra="4dp"
+                         android:fontFamily="sans-serif"/>
 
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:padding="8dp"
-                     android:orientation="vertical">
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="16dp"
+                         android:text="1. Data Collection" 
+                         android:textColor="#0f172a" 
+                         android:textSize="15sp" 
+                         android:textStyle="bold" 
+                         android:fontFamily="sans-serif"/>
 
-                     <!-- Biometric Login -->
-                     <LinearLayout
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:orientation="horizontal">
-                         
-                         <LinearLayout
-                             android:layout_width="48dp"
-                             android:layout_height="48dp"
-                             android:background="@drawable/bg_icon_circle_blue_light"
-                             android:gravity="center">
-                             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_fingerprint_blue"/>
-                         </LinearLayout>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="8dp"
+                         android:text="We collect clinical findings, dental images, and personal identification to provide accurate AI-driven diagnostics and coordination with your dental professionals. All images are processed securely." 
+                         android:textColor="#334155" 
+                         android:textSize="14sp" 
+                         android:lineSpacingExtra="4dp"
+                         android:fontFamily="sans-serif"/>
 
-                         <LinearLayout
-                             android:layout_width="0dp"
-                             android:layout_height="wrap_content"
-                             android:layout_weight="1"
-                             android:layout_marginStart="16dp"
-                             android:orientation="vertical">
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Biometric Login" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Use Face ID or fingerprint" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
-                         </LinearLayout>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="16dp"
+                         android:text="2. How We Use Data" 
+                         android:textColor="#0f172a" 
+                         android:textSize="15sp" 
+                         android:textStyle="bold" 
+                         android:fontFamily="sans-serif"/>
 
-                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enabled" android:textColor="#1d4ed8" android:textSize="12sp" android:textStyle="bold" android:background="@drawable/bg_badge_blue_light" android:paddingHorizontal="12dp" android:paddingVertical="6dp" android:layout_marginEnd="8dp" android:fontFamily="sans-serif"/>
-                         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_chevron_right"/>
-                     </LinearLayout>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="8dp"
+                         android:text="Your data is used to generate clinical reports, track healing progress, and facilitate appointments. AI models analyze your cases to provide preliminary findings which are then reviewed by licensed dentists." 
+                         android:textColor="#334155" 
+                         android:textSize="14sp" 
+                         android:lineSpacingExtra="4dp"
+                         android:fontFamily="sans-serif"/>
 
-                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#f1f5f9" android:layout_marginStart="80dp"/>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="16dp"
+                         android:text="3. Data Security" 
+                         android:textColor="#0f172a" 
+                         android:textSize="15sp" 
+                         android:textStyle="bold" 
+                         android:fontFamily="sans-serif"/>
 
-                     <!-- Change Password -->
-                     <LinearLayout
-                         android:id="@+id/btnChangePassword"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:orientation="horizontal"
-                         android:clickable="true"
-                         android:focusable="true">
-                         
-                         <LinearLayout
-                             android:layout_width="48dp"
-                             android:layout_height="48dp"
-                             android:background="@drawable/bg_icon_circle_orange_light"
-                             android:gravity="center">
-                             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_eye_orange"/>
-                         </LinearLayout>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="8dp"
+                         android:text="We implement industry-standard AES-256 encryption for data at rest and TLS for data in transit. Access to clinical data is strictly restricted to your assigned dental professionals." 
+                         android:textColor="#334155" 
+                         android:textSize="14sp" 
+                         android:lineSpacingExtra="4dp"
+                         android:fontFamily="sans-serif"/>
 
-                         <LinearLayout
-                             android:layout_width="0dp"
-                             android:layout_height="wrap_content"
-                             android:layout_weight="1"
-                             android:layout_marginStart="16dp"
-                             android:orientation="vertical">
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Change Password" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last changed 30 days ago" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
-                         </LinearLayout>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="16dp"
+                         android:text="4. Your Rights" 
+                         android:textColor="#0f172a" 
+                         android:textSize="15sp" 
+                         android:textStyle="bold" 
+                         android:fontFamily="sans-serif"/>
 
-                         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_chevron_right"/>
-                     </LinearLayout>
-                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                     <TextView 
+                         android:layout_width="match_parent" 
+                         android:layout_height="wrap_content" 
+                         android:layout_marginTop="8dp"
+                         android:text="You have the right to access, export, or delete your clinical history at any time. For data deletion requests, please contact our support team at support@smileai.com." 
+                         android:textColor="#334155" 
+                         android:textSize="14sp" 
+                         android:lineSpacingExtra="4dp"
+                         android:fontFamily="sans-serif"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Privacy Settings"
-                android:textColor="#94a3b8"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="sans-serif"/>
-
-            <!-- Privacy Settings Card -->
-            <androidx.cardview.widget.CardView
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 app:cardBackgroundColor="#ffffff"
-                 app:cardCornerRadius="24dp"
-                 app:cardElevation="0dp">
-
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:padding="8dp"
-                     android:orientation="vertical">
-
-                     <!-- Share Analytics -->
-                     <LinearLayout
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:orientation="horizontal">
-                         
-                         <LinearLayout
-                             android:layout_width="48dp"
-                             android:layout_height="48dp"
-                             android:background="@drawable/bg_icon_circle_gray_light"
-                             android:gravity="center">
-                             <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_eye_gray"/>
-                         </LinearLayout>
-
-                         <LinearLayout
-                             android:layout_width="0dp"
-                             android:layout_height="wrap_content"
-                             android:layout_weight="1"
-                             android:layout_marginStart="16dp"
-                             android:orientation="vertical">
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Share Analytics" android:textColor="#0f172a" android:textSize="16sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Help improve our services" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
-                         </LinearLayout>
-
-                         <Switch
-                             android:id="@+id/switchAnalytics"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:checked="true"
-                             android:trackTint="#3b82f6"
-                             android:thumbTint="#ffffff"/>
-                     </LinearLayout>
                  </LinearLayout>
             </androidx.cardview.widget.CardView>
 

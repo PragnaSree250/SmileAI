@@ -17,6 +17,24 @@
         android:padding="24dp"
         app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:id="@+id/btnBackContainer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back_arrow"
+                app:tint="#ffffff" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -27,17 +45,34 @@
             android:textStyle="bold"
             android:fontFamily="sans-serif"/>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/btnDownloadReport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_count_badge"
-            android:paddingHorizontal="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
-            android:text="4 Files"
-            android:textColor="#334155"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif"/>
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_download"
+                app:tint="#334155" />
+                
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Download"
+                android:textColor="#334155"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
     </LinearLayout>
 
     <ScrollView
@@ -89,6 +124,101 @@
                     android:text="Loading treatment plan details..."
                     android:textColor="#cbd5e1"
                     android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Clinical Insights -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="16dp">
+                
+                <TextView
+                    android:id="@+id/tvClinicalInsightsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clinical Insights"
+                    android:textColor="#38bdf8"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- How to Solve -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#1e293b"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="How to Solve"
+                        android:textColor="#38bdf8"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp"/>
+                    <TextView
+                        android:id="@+id/tvHowToSolve"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Loading..."
+                        android:textColor="#cbd5e1"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
+                <!-- Prevalence & Impact -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#1e293b"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prevalence &amp; Impact"
+                        android:textColor="#fcd34d"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp"/>
+                    <TextView
+                        android:id="@+id/tvPrevalence"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Loading..."
+                        android:textColor="#cbd5e1"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
+                <!-- Prevention Tactics -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#1e293b"
+                    android:padding="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prevention Tactics"
+                        android:textColor="#4ade80"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="4dp"/>
+                    <TextView
+                        android:id="@+id/tvPrevention"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Loading..."
+                        android:textColor="#cbd5e1"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <!-- Risk Analysis -->

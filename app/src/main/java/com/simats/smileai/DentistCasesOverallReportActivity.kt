@@ -20,17 +20,25 @@ class DentistCasesOverallReportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dentist_cases_overall_report)
 
+        val caseId = intent.getIntExtra("EXTRA_CASE_ID", -1)
+
         val btnBack = findViewById<LinearLayout>(R.id.btnBack)
         val btnReport = findViewById<LinearLayout>(R.id.btnReport)
         val btnExport = findViewById<LinearLayout>(R.id.btnExport)
+
+        btnBack.setOnClickListener { finish() }
+        
+        btnExport.setOnClickListener {
+            val intent = Intent(this, DentistExportFilesActivity::class.java)
+            intent.putExtra("EXTRA_CASE_ID", caseId)
+            startActivity(intent)
+        }
 
         val tvPatientName = findViewById<TextView>(R.id.tvOverallPatientName)
         val tvPatientInfo = findViewById<TextView>(R.id.tvOverallPatientInfo)
         val tvProsthesis = findViewById<TextView>(R.id.tvOverallProsthesis)
         val tvToothNo = findViewById<TextView>(R.id.tvOverallTooth)
         val tvReasoning = findViewById<TextView>(R.id.tvOverallDeficiencyReasoning)
-
-        val caseId = intent.getIntExtra("EXTRA_CASE_ID", -1)
 
         if (caseId != -1) {
             loadCaseDetails(caseId)
@@ -51,31 +59,12 @@ class DentistCasesOverallReportActivity : AppCompatActivity() {
             updateReasoning(tvReasoning, deficiency, restoration, tooth, abutment, gingival)
         }
 
-        val btnMarkComplete = findViewById<android.widget.Button>(R.id.btnMarkComplete)
-
-        btnBack.setOnClickListener {
-            finish()
-        }
-
-        btnReport.setOnClickListener {
-            val intent = Intent(this, DentistSolutionSelectionActivity::class.java).apply {
-                putExtras(this@DentistCasesOverallReportActivity.intent)
-            }
-            startActivity(intent)
-        }
-
-        btnExport.setOnClickListener {
-            val intent = Intent(this, DentistExportFilesActivity::class.java).apply {
-                putExtras(this@DentistCasesOverallReportActivity.intent)
-            }
-            startActivity(intent)
-        }
-
-        btnMarkComplete.setOnClickListener {
+        findViewById<android.widget.Button>(R.id.btnMarkComplete).setOnClickListener {
             if (caseId != -1) {
                 markCaseAsComplete(caseId)
             }
         }
+
     }
 
     private fun markCaseAsComplete(caseId: Int) {
@@ -89,7 +78,12 @@ class DentistCasesOverallReportActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Toast.makeText(this@DentistCasesOverallReportActivity, "Case marked as Completed!", Toast.LENGTH_SHORT).show()
                     findViewById<android.widget.Button>(R.id.btnMarkComplete).visibility = android.view.View.GONE
-                    // Refresh dashboard data when we go back
+                    
+                    // Navigate to All Cases
+                    val intent = Intent(this@DentistCasesOverallReportActivity, DentistAllCasesActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this@DentistCasesOverallReportActivity, "Failed to update status", Toast.LENGTH_SHORT).show()
                 }
@@ -112,7 +106,7 @@ class DentistCasesOverallReportActivity : AppCompatActivity() {
                     val case = cases.find { it.id == caseId }
                     case?.let {
                         findViewById<TextView>(R.id.tvOverallPatientName).text = "${it.patient_first_name} ${it.patient_last_name}"
-                        findViewById<TextView>(R.id.tvOverallPatientInitial).text = it.patient_first_name.take(1).uppercase()
+                        findViewById<TextView>(R.id.tvOverallPatientInitial).text = it.patient_first_name?.take(1)?.uppercase() ?: "P"
                         findViewById<TextView>(R.id.tvOverallPatientInfo).text = "ID: ${it.patient_id ?: "P-" + it.id} • DOB: ${it.patient_dob} • ${it.patient_gender}"
                         findViewById<TextView>(R.id.tvOverallProsthesis).text = "${it.restoration_type ?: "N/A"} (${it.material ?: "AI Material"})"
                         findViewById<TextView>(R.id.tvOverallTooth).text = "Tooth #${it.tooth_numbers ?: "N/A"}"
@@ -136,6 +130,26 @@ class DentistCasesOverallReportActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<List<Case>>, t: Throwable) {
                 Toast.makeText(this@DentistCasesOverallReportActivity, "Failed to load details", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun fetchReportAndPopulate(caseId: Int) {
+        RetrofitClient.instance.getReport(caseId).enqueue(object : Callback<com.simats.smileai.network.Report> {
+            override fun onResponse(call: Call<com.simats.smileai.network.Report>, response: Response<com.simats.smileai.network.Report>) {
+                if (response.isSuccessful) {
+                    val report = response.body()
+                    report?.let {
+                        findViewById<TextView>(R.id.tvOverallMedications).text = it.medications ?: "No medications prescribed."
+                        findViewById<TextView>(R.id.tvOverallCareTips).text = it.care_instructions ?: "Standard oral hygiene maintenance suggested."
+                    }
+                } else {
+                    findViewById<TextView>(R.id.tvOverallMedications).text = "No report finalized yet."
+                    findViewById<TextView>(R.id.tvOverallCareTips).text = "Finalize the case to see care tips."
+                }
+            }
+            override fun onFailure(call: Call<com.simats.smileai.network.Report>, t: Throwable) {
+                Toast.makeText(this@DentistCasesOverallReportActivity, "Failed to fetch report data", Toast.LENGTH_SHORT).show()
             }
         })
     }

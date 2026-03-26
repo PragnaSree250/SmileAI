@@ -6,8 +6,11 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import android.app.AlertDialog
 
 class DentistReportAdjustManuallyActivity : ComponentActivity() {
+
+    private var prescribedMed: Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,31 @@ class DentistReportAdjustManuallyActivity : ComponentActivity() {
             etGoldenRatio.setText(intent.getStringExtra("EXTRA_AI_GOLDEN_RATIO"))
         }
 
+        val btnPrescribeMedication = findViewById<Button>(R.id.btnPrescribeMedication)
+        btnPrescribeMedication.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.dialog_add_medication, null)
+            val etMedName = dialogView.findViewById<android.widget.EditText>(R.id.etMedName)
+            val etMedDosage = dialogView.findViewById<android.widget.EditText>(R.id.etMedDosage)
+            val etMedFrequency = dialogView.findViewById<android.widget.EditText>(R.id.etMedFrequency)
+            val etMedDuration = dialogView.findViewById<android.widget.EditText>(R.id.etMedDuration)
+            val etMedNotes = dialogView.findViewById<android.widget.EditText>(R.id.etMedNotes)
+
+            AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setPositiveButton("Save") { _, _ ->
+                    prescribedMed = Bundle().apply {
+                        putString("name", etMedName.text.toString())
+                        putString("dosage", etMedDosage.text.toString())
+                        putString("frequency", etMedFrequency.text.toString())
+                        putString("duration", etMedDuration.text.toString())
+                        putString("notes", etMedNotes.text.toString())
+                    }
+                    Toast.makeText(this, "Medication drafted", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
         btnApplyChanges.setOnClickListener {
             Toast.makeText(this, "Changes Applied", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, DentistApplyAndPreviewActivity::class.java).apply {
@@ -61,6 +89,7 @@ class DentistReportAdjustManuallyActivity : ComponentActivity() {
                 putExtra("EXTRA_MISSING_TEETH_STATUS", intent.getStringExtra("EXTRA_MISSING_TEETH_STATUS"))
                 putExtra("EXTRA_AI_SYMMETRY", etSymmetry.text.toString())
                 putExtra("EXTRA_AI_GOLDEN_RATIO", etGoldenRatio.text.toString())
+                prescribedMed?.let { putExtra("EXTRA_MEDICATION_BUNDLE", it) }
             }
             startActivity(intent)
             finish()

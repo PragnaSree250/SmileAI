@@ -6,6 +6,12 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
 
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -28,9 +34,10 @@
         </activity>
 
         <activity
-            android:name=".RoleSelectionActivity"
+            android:name=".SmartLoginActivity"
             android:exported="false"
             android:theme="@style/Theme.SmileAI" />
+
 
         <activity
             android:name=".DentistLoginActivity"
@@ -131,6 +138,11 @@
 
         <activity
             android:name=".PatientAiRecommendationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".PatientHealingActivity"
             android:exported="false"
             android:theme="@style/Theme.SmileAI" />
 
@@ -246,6 +258,16 @@
 
         <activity
             android:name=".DentistReportAdjustManuallyActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistSmileLibraryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmileAI" />
+
+        <activity
+            android:name=".DentistSolutionSelectionActivity"
             android:exported="false"
             android:theme="@style/Theme.SmileAI" />
 

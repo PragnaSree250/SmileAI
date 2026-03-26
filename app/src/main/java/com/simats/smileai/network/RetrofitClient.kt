@@ -19,9 +19,18 @@ object RetrofitClient {
         .addInterceptor(logging)
         .addInterceptor { chain ->
             val requestBuilder = chain.request().newBuilder()
-            authToken?.let {
-                requestBuilder.addHeader("Authorization", "Bearer $it")
+            
+            val currentToken = authToken
+            if (!currentToken.isNullOrBlank()) {
+                // Ensure Bearer prefix is used and formatted correctly
+                val tokenToUse = if (currentToken.startsWith("Bearer ", ignoreCase = true)) {
+                    currentToken
+                } else {
+                    "Bearer $currentToken"
+                }
+                requestBuilder.addHeader("Authorization", tokenToUse)
             }
+            
             chain.proceed(requestBuilder.build())
         }
         .connectTimeout(30, TimeUnit.SECONDS)

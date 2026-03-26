@@ -253,6 +253,56 @@
 
                     </LinearLayout>
 
+                    <View 
+                        android:layout_width="match_parent" 
+                        android:layout_height="1dp" 
+                        android:background="#f1f5f9" 
+                        android:layout_marginVertical="16dp"/>
+
+                    <!-- Privacy & Policy -->
+                    <LinearLayout
+                        android:id="@+id/btnPrivacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Privacy &amp; Policy"
+                                android:textColor="#0f172a"
+                                android:textSize="16sp"
+                                android:fontFamily="sans-serif"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Read our privacy policy"
+                                android:textColor="#64748b"
+                                android:textSize="12sp"
+                                android:fontFamily="sans-serif"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="View"
+                            android:textColor="#059669"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

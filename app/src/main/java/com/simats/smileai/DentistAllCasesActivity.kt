@@ -20,6 +20,8 @@ import retrofit2.Response
 class DentistAllCasesActivity : ComponentActivity() {
     private lateinit var casesContainer: LinearLayout
     private lateinit var staticCasesList: LinearLayout
+    private var allCases: List<Case> = emptyList()
+    private var initialFilterType: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +53,10 @@ class DentistAllCasesActivity : ComponentActivity() {
             startActivity(Intent(this, DentistNewCase1Activity::class.java))
         }
 
+        initialFilterType = intent.getStringExtra("FILTER_TYPE")
+
         btnFilter.setOnClickListener {
-            Toast.makeText(this, "Filter Clicked", Toast.LENGTH_SHORT).show()
+            showFilterDialog()
         }
         
         btnNotification?.setOnClickListener {
@@ -63,6 +67,14 @@ class DentistAllCasesActivity : ComponentActivity() {
             startActivity(Intent(this, DentistMenuBarActivity::class.java))
         }
 
+        etSearch.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterCases(s.toString())
+            }
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        })
+
         fetchCases()
     }
 
@@ -71,9 +83,15 @@ class DentistAllCasesActivity : ComponentActivity() {
             override fun onResponse(call: Call<List<Case>>, response: Response<List<Case>>) {
                 if (response.isSuccessful) {
                     val cases = response.body() ?: emptyList()
-                    if (cases.isNotEmpty()) {
+                    // Remove duplicates by ID
+                    allCases = cases.distinctBy { it.id }
+                    if (allCases.isNotEmpty()) {
                         staticCasesList.visibility = android.view.View.GONE
-                        updateCasesUi(cases)
+                        if (initialFilterType != null) {
+                            applyStatusFilter(initialFilterType!!)
+                        } else {
+                            updateCasesUi(allCases)
+                        }
                     }
                 }
             }
@@ -82,6 +100,14 @@ class DentistAllCasesActivity : ComponentActivity() {
                 Toast.makeText(this@DentistAllCasesActivity, "Error fetching cases: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun filterCases(query: String) {
+        val filtered = allCases.filter { caseItem ->
+            val fullName = "${caseItem.patient_first_name} ${caseItem.patient_last_name}".lowercase()
+            fullName.contains(query.lowercase()) || (caseItem.id?.toString()?.contains(query) ?: false)
+        }
+        updateCasesUi(filtered)
     }
 
     private fun updateCasesUi(cases: List<Case>) {
@@ -120,5 +146,33 @@ class DentistAllCasesActivity : ComponentActivity() {
 
             casesContainer.addView(itemView)
         }
+    }
+
+    private fun showFilterDialog() {
+        val options = arrayOf("All", "Active", "Pending", "Done/Completed")
+        android.app.AlertDialog.Builder(this)
+            .setTitle("Filter by Status")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> updateCasesUi(allCases) // All
+                    1 -> applyStatusFilter("Active")
+                    2 -> applyStatusFilter("Pending")
+                    3 -> applyStatusFilter("Done")
+                }
+            }
+            .show()
+    }
+
+    private fun applyStatusFilter(status: String) {
+        val filtered = allCases.filter { caseItem ->
+            when (status.lowercase()) {
+                "active" -> caseItem.status?.lowercase() == "active" || caseItem.status?.lowercase() == "in progress"
+                "pending" -> caseItem.status?.lowercase() == "pending"
+                "done" -> caseItem.status?.lowercase() == "done" || caseItem.status?.lowercase() == "completed"
+                else -> true
+            }
+        }
+        updateCasesUi(filtered)
+        findViewById<EditText>(R.id.etSearch).setHint("Filtering by $status...")
     }
 }

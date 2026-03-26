@@ -21,8 +21,8 @@ class PatientSignUpActivity : ComponentActivity() {
 
         val etFullName = findViewById<EditText>(R.id.etFullName)
         val etEmail = findViewById<EditText>(R.id.etEmail)
-        val etPhone = findViewById<EditText>(R.id.etPhone)
         val etPassword = findViewById<EditText>(R.id.etPassword)
+
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnBack = findViewById<LinearLayout>(R.id.btnBack)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
@@ -39,12 +39,19 @@ class PatientSignUpActivity : ComponentActivity() {
         btnSignUp.setOnClickListener {
             val name = etFullName.text.toString().trim()
             val email = etEmail.text.toString().trim()
-            val phone = etPhone.text.toString().trim()
             val password = etPassword.text.toString()
+
             val confirmPassword = etConfirmPassword.text.toString()
 
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() || !email.endsWith(".com")) {
+                Toast.makeText(this, "Please enter a valid email address ending in .com", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -54,56 +61,22 @@ class PatientSignUpActivity : ComponentActivity() {
             }
 
             // Create Request Data
-            val requestData = mapOf(
+            val requestData = mutableMapOf(
                 "full_name" to name,
                 "email" to email,
-                "phone" to phone,
                 "password" to password,
-                "role" to "patient" // IMPORTANT: specify role for patient
+                "role" to "patient"
             )
 
             // Perform API Call
             RetrofitClient.instance.signUp(requestData).enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful && response.body()?.status == "success") {
-                        Toast.makeText(this@PatientSignUpActivity, "Registration Successful!", Toast.LENGTH_SHORT).show()
-                        
-                        // Perform Auto-Login
-                        val loginData = mapOf("email" to email, "password" to password)
-                        RetrofitClient.instance.login(loginData).enqueue(object : Callback<ApiResponse> {
-                            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                                if (response.isSuccessful && response.body()?.status == "success") {
-                                    val body = response.body()
-                                    val user = body?.user
-                                    val token = body?.access_token
-
-                                    if (user != null && token != null) {
-                                        val sharedPref = getSharedPreferences("SmileAI", android.content.Context.MODE_PRIVATE)
-                                        with(sharedPref.edit()) {
-                                            putInt("user_id", user.id)
-                                            putString("access_token", "Bearer $token")
-                                            putString("user_role", user.role)
-                                            putString("user_name", user.full_name)
-                                            putString("patient_clinical_id", user.patient_id ?: "")
-                                            apply()
-                                        }
-
-                                        val intent = Intent(this@PatientSignUpActivity, PatientDashboardActivity::class.java)
-                                        startActivity(intent)
-                                        finishAffinity()
-                                    } else {
-                                        Toast.makeText(this@PatientSignUpActivity, "Login failed after registration.", Toast.LENGTH_SHORT).show()
-                                    }
-                                } else {
-                                    Toast.makeText(this@PatientSignUpActivity, "Please login manually.", Toast.LENGTH_SHORT).show()
-                                    finish() // Go back to login screen
-                                }
-                            }
-                            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                                Toast.makeText(this@PatientSignUpActivity, "Network error during login.", Toast.LENGTH_SHORT).show()
-                                finish()
-                            }
-                        })
+                        Toast.makeText(this@PatientSignUpActivity, "Registration Successful! Please Login.", Toast.LENGTH_LONG).show()
+                        val intent = Intent(this@PatientSignUpActivity, SmartLoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
                     } else {
                         val errorBody = response.errorBody()?.string()
                         val errorMsg = if (!errorBody.isNullOrEmpty()) {

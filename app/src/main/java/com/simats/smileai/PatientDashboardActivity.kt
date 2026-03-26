@@ -14,6 +14,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PatientDashboardActivity : AppCompatActivity() {
+    private var latestCaseId: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_dashboard)
@@ -23,7 +25,13 @@ class PatientDashboardActivity : AppCompatActivity() {
         val firstName = userName.split(" ").firstOrNull() ?: "Patient"
         
         val tvGreeting = findViewById<TextView>(R.id.tvPatientGreetingName)
-        tvGreeting.text = "$firstName \uD83D\uDC4B"
+        tvGreeting.text = "$firstName \uD83D\uDC4B ✨ 🦷"
+
+        // Ensure RetrofitClient is initialized
+        val accessToken = sharedPref.getString("access_token", "") ?: ""
+        if (accessToken.isNotEmpty() && RetrofitClient.authToken == null) {
+            RetrofitClient.authToken = accessToken
+        }
 
         val btnNewReports = findViewById<LinearLayout>(R.id.btnNewReports)
         val btnMeds = findViewById<LinearLayout>(R.id.btnMeds)
@@ -32,17 +40,20 @@ class PatientDashboardActivity : AppCompatActivity() {
         val navReports = findViewById<LinearLayout>(R.id.navReports)
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
         val recentActivity1 = findViewById<LinearLayout>(R.id.recentActivity1)
-        val recentActivity2 = findViewById<LinearLayout>(R.id.recentActivity2)
         val btnActiveCases = findViewById<LinearLayout>(R.id.btnActiveCases)
         val btnNotifications = findViewById<ImageView>(R.id.btnNotifications)
         val btnUnread = findViewById<LinearLayout>(R.id.btn_unread)
 
         btnNewReports.setOnClickListener {
-            startActivity(Intent(this, PatientReportActivity::class.java))
+            val intent = Intent(this, PatientReportActivity::class.java)
+            latestCaseId?.let { intent.putExtra("EXTRA_CASE_ID", it) }
+            startActivity(intent)
         }
 
         btnMeds.setOnClickListener {
-            startActivity(Intent(this, PatientMedActivity::class.java))
+            val intent = Intent(this, PatientMedActivity::class.java)
+            latestCaseId?.let { intent.putExtra("EXTRA_CASE_ID", it) }
+            startActivity(intent)
         }
 
         navHome.setOnClickListener {
@@ -55,23 +66,16 @@ class PatientDashboardActivity : AppCompatActivity() {
         }
 
         navReports.setOnClickListener {
-            startActivity(Intent(this, PatientReportActivity::class.java))
+            startActivity(Intent(this, PatientCaseAllActivity::class.java))
+            overridePendingTransition(0, 0)
         }
 
         navProfile.setOnClickListener {
-            val profileIcon = navProfile.getChildAt(0) as ImageView
-            val profileText = navProfile.getChildAt(1) as TextView
-            profileIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.white))
-            profileText.setTextColor(ContextCompat.getColor(this, android.R.color.white))
             startActivity(Intent(this, PatientProfileActivity::class.java))
         }
 
         recentActivity1.setOnClickListener {
-            startActivity(Intent(this, PatientHealingActivity::class.java))
-        }
-
-        recentActivity2.setOnClickListener {
-            startActivity(Intent(this, PatientRecentActivity::class.java))
+            startActivity(Intent(this, PatientCaseAllActivity::class.java))
         }
 
         btnActiveCases.setOnClickListener {
@@ -86,7 +90,31 @@ class PatientDashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, PatientNotificationsActivity::class.java))
         }
 
+        loadLatestCase()
         loadStats()
+    }
+
+    private fun loadLatestCase() {
+        val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)
+        val patientId = sharedPref.getString("patient_clinical_id", "") ?: ""
+        if (patientId.isEmpty()) return
+
+        RetrofitClient.instance.getPatientCases(patientId).enqueue(object : retrofit2.Callback<List<com.simats.smileai.network.Case>> {
+            override fun onResponse(call: retrofit2.Call<List<com.simats.smileai.network.Case>>, response: retrofit2.Response<List<com.simats.smileai.network.Case>>) {
+                if (response.isSuccessful) {
+                    val cases = response.body() ?: emptyList()
+                    val latest = cases.firstOrNull()
+                    if (latest != null) {
+                        latestCaseId = latest.id
+                        // Status update logic for generic cases if needed
+                    }
+                }
+            }
+            override fun onFailure(call: retrofit2.Call<List<com.simats.smileai.network.Case>>, t: Throwable) {
+                // Silent failure is okay for dashboard polling, but maybe a log
+                 android.util.Log.e("PatientDashboard", "Failed to load cases: ${t.message}")
+            }
+        })
     }
 
     private fun loadStats() {
@@ -102,13 +130,40 @@ class PatientDashboardActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                // Ignore for now
+                android.util.Log.e("PatientDashboard", "Failed to load stats: ${t.message}")
+            }
+        })
+    }
+
+    private fun loadUpcomingAppointment() {
+        val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)
+        val patientId = sharedPref.getString("patient_clinical_id", "") ?: ""
+        if (patientId.isEmpty()) return
+
+        RetrofitClient.instance.getPatientAppointments(patientId).enqueue(object : Callback<com.simats.smileai.network.AppointmentResponse> {
+            override fun onResponse(call: Call<com.simats.smileai.network.AppointmentResponse>, response: Response<com.simats.smileai.network.AppointmentResponse>) {
+                if (response.isSuccessful) {
+                    val appointment = response.body()?.appointment
+                    val llAppointment = findViewById<LinearLayout>(R.id.llUpcomingAppointment)
+                    if (appointment != null) {
+                        llAppointment.visibility = android.view.View.VISIBLE
+                        findViewById<TextView>(R.id.tvAppointmentDate).text = appointment.appointment_date
+                        findViewById<TextView>(R.id.tvAppointmentDay).text = appointment.appointment_day
+                    } else {
+                        llAppointment.visibility = android.view.View.GONE
+                    }
+                }
+            }
+            override fun onFailure(call: Call<com.simats.smileai.network.AppointmentResponse>, t: Throwable) {
+                android.util.Log.e("PatientDashboard", "Failed to load appointment: ${t.message}")
             }
         })
     }
 
     override fun onResume() {
         super.onResume()
+        loadLatestCase()
         loadStats()
+        loadUpcomingAppointment()
     }
 }

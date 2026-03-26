@@ -19,15 +19,18 @@
 
         <LinearLayout
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_back_arrow"
-                android:tint="#ffffff" />
+                app:tint="#ffffff" />
         </LinearLayout>
 
         <TextView
@@ -114,6 +117,99 @@
                             android:layout_marginStart="8dp"/>
                     </LinearLayout>
 
+                    <!-- Clinical Insights -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CLINICAL INSIGHTS"
+                        android:textColor="#94a3b8"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="8dp"/>
+                        
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="16dp">
+                        
+                        <!-- How to Solve -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="#1e293b"
+                            android:padding="12dp"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="How to Solve"
+                                android:textColor="#38bdf8"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="4dp"/>
+                            <TextView
+                                android:id="@+id/tvHowToSolve"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Loading..."
+                                android:textColor="#cbd5e1"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+
+                        <!-- Prevalence -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="#1e293b"
+                            android:padding="12dp"
+                            android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Prevalence &amp; Impact"
+                                android:textColor="#fcd34d"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="4dp"/>
+                            <TextView
+                                android:id="@+id/tvPrevalence"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Loading..."
+                                android:textColor="#cbd5e1"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+
+                        <!-- Prevention -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="#1e293b"
+                            android:padding="12dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Prevention Tactics"
+                                android:textColor="#4ade80"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="4dp"/>
+                            <TextView
+                                android:id="@+id/tvPrevention"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Loading..."
+                                android:textColor="#cbd5e1"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
                     <!-- Recommended Treatment -->
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,6 +230,38 @@
                         android:textColor="#f8fafc"
                         android:textSize="15sp"
                         android:textStyle="italic"/>
+
+                    <!-- Smile Blueprint -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SMILE BLUEPRINT"
+                        android:textColor="#94a3b8"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_smile_logo"
+                            app:tint="#38bdf8"/>
+                        <TextView
+                            android:id="@+id/tvFinalSmileShape"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ovoid-Tapering Hybrid"
+                            android:textColor="#38bdf8"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:layout_marginStart="8dp"/>
+                    </LinearLayout>
 
                     <!-- Clinical Rationale -->
                     <TextView

@@ -10,10 +10,10 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
 
-class DentistNewCase1Activity : ComponentActivity() {
+class DentistNewCase1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dentist_new_case_1)
@@ -29,7 +29,7 @@ class DentistNewCase1Activity : ComponentActivity() {
         val spinnerGender = findViewById<Spinner>(R.id.spinnerGender)
 
         val genderOptions = arrayOf("Select Gender", "Male", "Female", "Other")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderOptions)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, genderOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerGender.adapter = adapter
 
@@ -46,7 +46,7 @@ class DentistNewCase1Activity : ComponentActivity() {
         btnPrevious?.setOnClickListener { finish() }
 
         btnContinue?.setOnClickListener {
-            val patientId = etPatientId.text.toString().trim()
+            val patientId = etPatientId.text.toString().trim().uppercase().replace("-", "")
             val name = etFullName.text.toString().trim()
             val dob = etDob.text.toString()
             if (name.isEmpty() || dob.isEmpty() || patientId.isEmpty()) {

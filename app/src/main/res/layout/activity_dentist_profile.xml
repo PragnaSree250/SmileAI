@@ -92,15 +92,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
                 
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:background="@drawable/bg_icon_circle_green"
-                    android:backgroundTint="#cbd5e1"/> <!-- Placeholder circle color -->
-                
                 <ImageView
-                     android:layout_width="64dp"
-                     android:layout_height="64dp"
+                     android:id="@+id/ivProfilePhoto"
+                     android:layout_width="120dp"
+                     android:layout_height="120dp"
+                     android:scaleType="centerCrop"
                      android:src="@drawable/ic_profile_placeholder" 
                      app:tint="#64748b"
                      android:layout_gravity="center"/>
@@ -132,6 +128,16 @@
                 android:text="Prosthodontist"
                 android:textColor="#94a3b8"
                 android:textSize="16sp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvDentistId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading ID..."
+                android:textColor="#38bdf8"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 android:layout_marginBottom="32dp"/>
 
             <!-- Personal Information Card -->
@@ -258,6 +264,18 @@
                     android:text="Save Changes"
                     android:textAllCaps="false"
                     android:backgroundTint="#0f766e"
+                    android:textColor="#ffffff"
+                    android:paddingVertical="12dp"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <Button
+                    android:id="@+id/btnDeleteAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Account"
+                    android:textAllCaps="false"
+                    android:backgroundTint="#dc2626"
                     android:textColor="#ffffff"
                     android:paddingVertical="12dp"
                     android:textSize="16sp"/>

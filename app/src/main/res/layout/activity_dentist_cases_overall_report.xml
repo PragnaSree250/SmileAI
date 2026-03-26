@@ -15,6 +15,8 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -22,13 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_back_arrow"
-                android:tint="#ffffff" />
+                app:tint="#ffffff" />
         </LinearLayout>
 
         <View
@@ -46,7 +51,10 @@
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             android:gravity="center_vertical"
-            android:layout_marginEnd="12dp">
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
              <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
@@ -70,7 +78,10 @@
             android:backgroundTint="#ffffff"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
              <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
@@ -89,6 +100,7 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -305,7 +317,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="24dp">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_check_circle_green" android:layout_marginEnd="12dp"/>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_check_circle" app:tint="#15803d" android:layout_marginEnd="12dp"/>
                     <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
                          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Case Created" android:textColor="#0f172a" android:textStyle="bold" android:textSize="14sp"/>
                          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Initial data entry and patient selection" android:textColor="#64748b" android:textSize="12sp"/>
@@ -319,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="24dp">
-                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_check_circle_green" android:layout_marginEnd="12dp"/>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_check_circle" app:tint="#15803d" android:layout_marginEnd="12dp"/>
                     <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
                          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Scans Uploaded" android:textColor="#0f172a" android:textStyle="bold" android:textSize="14sp"/>
                          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Intraoral scan and smile photos processed" android:textColor="#64748b" android:textSize="12sp"/>
@@ -354,52 +366,64 @@
                 </LinearLayout>
 
             </LinearLayout>
-            
-            <!-- AI Analysis Preview (Bottom Card in Clinical Analysis) -->
+
+            <!-- 4. Medications & Care Tips Card (Initially Hidden or at bottom) -->
             <LinearLayout
+                android:id="@+id/cardMedications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_surface_card"
-                android:backgroundTint="#ffffff"
+                android:backgroundTint="#f0fdfa"
                 android:orientation="vertical"
                 android:padding="24dp"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="24dp"
+                android:visibility="gone">
                 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AI Analysis"
-                    android:textColor="#0f172a"
+                    android:text="Medications &amp; Care Tips"
+                    android:textColor="#0d9488"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:layout_marginBottom="24dp"/>
+                    android:layout_marginBottom="16dp"/>
 
-                 <!-- Metric 1 -->
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRESCRIBED MEDICATIONS"
+                    android:textColor="#94a3b8"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"/>
+                <TextView
+                    android:id="@+id/tvOverallMedications"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Margin Clarity" android:textColor="#64748b" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="High (98%)" android:textColor="#15803d" android:background="@drawable/bg_status_green" android:backgroundTint="#dcfce7" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textSize="11sp" android:textStyle="bold"/>
-                </LinearLayout>
+                    android:text="Loading..."
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"/>
 
-                 <!-- Metric 2 -->
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CARE INSTRUCTIONS"
+                    android:textColor="#94a3b8"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"/>
+                <TextView
+                    android:id="@+id/tvOverallCareTips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Occlusion Space" android:textColor="#64748b" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Adequate" android:textColor="#15803d" android:background="@drawable/bg_status_green" android:backgroundTint="#dcfce7" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textSize="11sp" android:textStyle="bold"/>
-                </LinearLayout>
-
-                 <!-- Metric 3 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Insertion Path" android:textColor="#64748b" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Check Undercuts" android:textColor="#b45309" android:background="@drawable/bg_status_yellow" android:backgroundTint="#fef3c7" android:paddingHorizontal="8dp" android:paddingVertical="4dp" android:textSize="11sp" android:textStyle="bold"/>
-                </LinearLayout>
-
+                    android:text="Loading..."
+                    android:textColor="#1e293b"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
             
             <!-- Patient Details Card -->
@@ -463,6 +487,8 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+
 
             <!-- Complete Action Button -->
             <Button

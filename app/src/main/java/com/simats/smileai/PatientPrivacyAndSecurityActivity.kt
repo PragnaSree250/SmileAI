@@ -16,10 +16,5 @@ class PatientPrivacyAndSecurityActivity : ComponentActivity() {
         findViewById<ImageView>(R.id.btnBack).setOnClickListener {
             finish()
         }
-
-        // Change Password Logic
-        findViewById<LinearLayout>(R.id.btnChangePassword).setOnClickListener {
-            startActivity(Intent(this, PatientChangePasswordActivity::class.java))
-        }
     }
 }

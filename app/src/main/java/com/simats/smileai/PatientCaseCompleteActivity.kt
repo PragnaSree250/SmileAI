@@ -17,7 +17,7 @@ class PatientCaseCompleteActivity : ComponentActivity() {
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
 
         navReports.setOnClickListener {
-            startActivity(Intent(this, PatientReportActivity::class.java))
+            startActivity(Intent(this, PatientCaseAllActivity::class.java))
             overridePendingTransition(0, 0)
             finish()
         }
@@ -66,11 +66,14 @@ class PatientCaseCompleteActivity : ComponentActivity() {
                     val completedCases = allCases.filter { it.status?.lowercase() == "completed" || it.status?.lowercase() == "done" }
                     findViewById<TextView>(R.id.tabCompleted)?.text = "Completed (${completedCases.size})"
                     updateCasesUi(completedCases)
+                } else {
+                    val error = response.errorBody()?.string() ?: "Unknown error"
+                    android.widget.Toast.makeText(this@PatientCaseCompleteActivity, "Failed to load: $error", android.widget.Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: retrofit2.Call<List<com.simats.smileai.network.Case>>, t: Throwable) {
-                // Silent fail or Toast
+                android.widget.Toast.makeText(this@PatientCaseCompleteActivity, "Network Error: ${t.message}", android.widget.Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -122,7 +125,9 @@ class PatientCaseCompleteActivity : ComponentActivity() {
             tvProgressText.text = "$progress%"
 
             itemView.setOnClickListener {
-                startActivity(Intent(this, PatientReportActivity::class.java))
+                val intent = Intent(this, PatientReportActivity::class.java)
+                intent.putExtra("EXTRA_CASE_ID", case.id ?: -1)
+                startActivity(intent)
             }
 
             casesContainer.addView(itemView)

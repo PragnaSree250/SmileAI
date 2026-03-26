@@ -19,16 +19,19 @@ object FileDownloader {
                 .setAllowedOverRoaming(true)
 
             token?.let {
-                val finalToken = if (it.startsWith("Bearer ", ignoreCase = true)) it else "Bearer $it"
-                request.addRequestHeader("Authorization", finalToken)
+                if (it.isNotBlank()) {
+                    val finalToken = if (it.startsWith("Bearer ", ignoreCase = true)) it else "Bearer $it"
+                    request.addRequestHeader("Authorization", finalToken)
+                }
             }
 
             val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             downloadManager.enqueue(request)
 
-            Toast.makeText(context, "Download started: $fileName", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Download started to Downloads folder...", Toast.LENGTH_LONG).show()
         } catch (e: Exception) {
-            Toast.makeText(context, "Download failed: ${e.message}", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+            Toast.makeText(context, "Download failed: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -44,19 +44,36 @@ class DentistSolutionSelectionActivity : ComponentActivity() {
             if (idx != -1) spinnerMaterial.setSelection(idx)
         }
 
+        val btnOpenSmileLibrary = findViewById<LinearLayout>(R.id.btnOpenSmileLibrary)
+        val tvSelectedSmileShape = findViewById<TextView>(R.id.tvSelectedSmileShape)
+
+        btnOpenSmileLibrary.setOnClickListener {
+            val intent = Intent(this, DentistSmileLibraryActivity::class.java)
+            startActivityForResult(intent, 1001)
+        }
+
         btnProceed.setOnClickListener {
             val selectedRestoration = spinnerRestoration.selectedItem.toString()
             val selectedMaterial = spinnerMaterial.selectedItem.toString()
             val notes = etNotes.text.toString()
+            val selectedShape = tvSelectedSmileShape.text.toString()
 
-            val intent = Intent(this, DentistFinalizedReportActivity::class.java).apply {
+            val intent = Intent(this, DentistApplyAndPreviewActivity::class.java).apply {
                 putExtras(this@DentistSolutionSelectionActivity.intent)
                 putExtra("EXTRA_RESTORATION", selectedRestoration)
                 putExtra("EXTRA_MATERIAL", selectedMaterial)
-                putExtra("EXTRA_AI_RECOMMENDATION", "Plan: $selectedRestoration ($selectedMaterial). $notes")
-                // Pass it as the final recommendation
+                putExtra("EXTRA_AI_RECOMMENDED_SHAPE", if (selectedShape.contains("Select")) "Ovoid-Tapering Hybrid" else selectedShape)
+                putExtra("EXTRA_AI_RECOMMENDATION", "Plan: $selectedRestoration ($selectedMaterial). Aesthetic: $selectedShape. $notes")
             }
             startActivity(intent)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1001 && resultCode == RESULT_OK) {
+            val shape = data?.getStringExtra("SELECTED_SMILE_SHAPE")
+            findViewById<TextView>(R.id.tvSelectedSmileShape).text = shape ?: "Ovoid-Tapering Hybrid"
         }
     }
 }

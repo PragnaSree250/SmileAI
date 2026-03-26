@@ -36,14 +36,10 @@
             android:layout_height="24dp" />
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_circle_white"
-            android:backgroundTint="#3b82f6"
-            android:padding="16dp"
-            android:src="@drawable/ic_user_white"
-            android:tint="#ffffff" />
+            android:src="@drawable/ic_smile_logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,37 +80,6 @@
                 android:textColorHint="#94a3b8"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_input_box"
-                android:backgroundTint="#f1f5f9"
-                android:fontFamily="sans-serif"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:padding="16dp"
-                android:textColor="#0f172a"
-                android:textColorHint="#94a3b8"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/etPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_input_box"
-                android:backgroundTint="#f1f5f9"
-                android:fontFamily="sans-serif"
-                android:hint="Phone Number"
-                android:inputType="phone"
-                android:minHeight="48dp"
-                android:padding="16dp"
-                android:textColor="#0f172a"
-                android:textColorHint="#94a3b8"
-                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/etPassword"
@@ -131,6 +96,26 @@
                 android:textColor="#0f172a"
                 android:textColorHint="#94a3b8"
                 android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_input_box"
+                android:backgroundTint="#f1f5f9"
+                android:fontFamily="sans-serif"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:importantForAutofill="yes"
+                android:autofillHints="emailAddress"
+                android:minHeight="48dp"
+                android:padding="16dp"
+                android:textColor="#0f172a"
+                android:textColorHint="#94a3b8"
+                android:textSize="16sp" />
+
+
 
              <EditText
                 android:id="@+id/etConfirmPassword"

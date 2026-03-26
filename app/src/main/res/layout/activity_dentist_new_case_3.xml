@@ -139,17 +139,17 @@
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
-            <EditText
-                android:id="@+id/etCondition"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_input_box_highlight"
-                android:hint="e.g. Diastema, Missing Teeth"
-                android:minHeight="56dp"
-                android:padding="16dp"
-                android:textColor="#ffffff"
-                android:textColorHint="#cbd5e1"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="24dp">
+                <Spinner
+                    android:id="@+id/conditionSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:backgroundTint="#ffffff" />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"

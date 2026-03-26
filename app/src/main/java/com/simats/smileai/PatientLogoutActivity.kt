@@ -27,7 +27,7 @@ class PatientLogoutActivity : AppCompatActivity() {
         btnLogoutConfirm.setOnClickListener {
             val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)
             sharedPref.edit().clear().apply() // Clear session
-            val intent = Intent(this, RoleSelectionActivity::class.java)
+            val intent = Intent(this, SmartLoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             finishAffinity()

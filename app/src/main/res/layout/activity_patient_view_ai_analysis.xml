@@ -331,6 +331,69 @@
                         android:textSize="13sp"
                         android:lineSpacingExtra="3dp"/>
 
+                    <!-- Risk Analysis -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RISK ANALYSIS"
+                        android:textColor="#64748b"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05"/>
+                    <TextView
+                        android:id="@+id/tvRiskAnalysis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Moderate structural risk detected."
+                        android:textColor="#475569"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="3dp"/>
+
+                    <!-- Aesthetic Prognosis -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AESTHETIC PROGNOSIS"
+                        android:textColor="#64748b"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05"/>
+                    <TextView
+                        android:id="@+id/tvAestheticPrognosis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Positive results with regular monitoring."
+                        android:textColor="#475569"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="3dp"/>
+
+                    <!-- Placement Strategy -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PLACEMENT STRATEGY"
+                        android:textColor="#64748b"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05"/>
+                    <TextView
+                        android:id="@+id/tvPlacementStrategy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Standard clinical placement protocol."
+                        android:textColor="#475569"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="3dp"/>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"

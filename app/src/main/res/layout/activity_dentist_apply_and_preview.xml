@@ -70,43 +70,85 @@
             android:orientation="vertical"
             android:padding="24dp">
             
-            <!-- 3D Viewport Placeholder -->
+            <!-- Comparison Mode Toggle -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:backgroundTint="#1e293b"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Professional Comparison Mode"
+                    android:textColor="#f8fafc"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchComparison"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:thumbTint="#10b981"
+                    app:trackTint="#334155"/>
+            </LinearLayout>
+
+            <!-- Visualization Area -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
                 android:background="@drawable/bg_surface_card"
                 android:backgroundTint="#ffffff"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="2dp"
                 android:layout_marginBottom="24dp">
                 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp">
-                    <TextView
-                        android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    
+                    <!-- Original Image Layer -->
+                    <ImageView
+                        android:id="@+id/ivPreviewOriginal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_upload"
+                        app:tint="#475569"
+                        android:alpha="0.3"/>
+
+                    <!-- Simulation Layer (Overlay) -->
+                    <ImageView
+                        android:id="@+id/ivPreviewSimulation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_tooth_visual"
+                        app:tint="#38bdf8"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Case Visualization"
-                        android:textColor="#0f172a"
-                        android:textSize="16sp"/>
-                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_layers"
-                        android:background="#e2e8f0"
-                        android:padding="6dp"
-                        app:tint="#94a3b8"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="#f8fafc"/>
-
+                        android:layout_gravity="bottom|start"
+                        android:layout_margin="16dp"
+                        android:background="#800f172a"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp">
+                        <TextView
+                            android:id="@+id/tvViewLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="INITIAL SCAN"
+                            android:textColor="#f8fafc"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1"/>
+                    </LinearLayout>
+                </FrameLayout>
             </LinearLayout>
 
             <!-- Case Details Card -->

@@ -14,7 +14,7 @@ class SplashActivity : ComponentActivity() {
         val btnGetStarted = findViewById<android.widget.Button>(R.id.btnGetStarted)
 
         btnGetStarted.setOnClickListener {
-            startActivity(Intent(this, RoleSelectionActivity::class.java))
+            startActivity(Intent(this, SmartLoginActivity::class.java))
             finish()
         }
     }

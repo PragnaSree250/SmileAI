@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import com.simats.smileai.ml.YoloDetector
 import android.graphics.BitmapFactory
 import android.net.Uri
+import com.simats.smileai.network.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class PatientViewAiAnalysisActivity : ComponentActivity() {
+class PatientViewAiAnalysisActivity : AppCompatActivity() {
     private lateinit var detector: YoloDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,81 +24,98 @@ class PatientViewAiAnalysisActivity : ComponentActivity() {
 
         detector = YoloDetector(this)
 
-        val btnBack = findViewById<ImageView>(R.id.btnBack)
-        val tvConfidence = findViewById<TextView>(R.id.tvConfidence) // New ID
-        val pbConfidence = findViewById<ProgressBar>(R.id.pbConfidence) // New ID
-        val tvFinding1Title = findViewById<TextView>(R.id.tvFinding1Title) // New ID
-        val tvFinding1Desc = findViewById<TextView>(R.id.tvFinding1Desc) // New ID
-
-        // Populate with dynamic data or AI results
-        val deficiency = intent.getStringExtra("EXTRA_DEFICIENCY") ?: "Structural Deficiency"
-        val recommendation = intent.getStringExtra("EXTRA_RECOMMENDATION") ?: "Structural restoration advised."
-        val explanation = intent.getStringExtra("EXTRA_EXPLANATION") ?: "The AI identifies a structural deficiency that requires a multi-unit approach to ensure long-term stability and bite alignment."
-        val symmetry = intent.getStringExtra("EXTRA_SYMMETRY") ?: "92%"
-        val goldenRatio = intent.getStringExtra("EXTRA_GOLDEN_RATIO") ?: "1.618"
-        var tooth = intent.getStringExtra("EXTRA_TOOTH") ?: "3"
-
-        // Try to perform real AI detection if an image URI is provided
-        intent.getStringExtra("IMAGE_URI")?.let { uriString ->
-            try {
-                val inputStream = contentResolver.openInputStream(Uri.parse(uriString))
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                val results = detector.detect(bitmap)
-                if (results.isNotEmpty()) {
-                    tooth = results[0].label
-                    val confidence = (results[0].confidence * 100).toInt()
-                    tvConfidence.text = "$confidence%"
-                    pbConfidence.progress = confidence
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        // Ensure RetrofitClient is initialized
+        val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)
+        val accessToken = sharedPref.getString("access_token", "") ?: ""
+        if (accessToken.isNotEmpty() && RetrofitClient.authToken == null) {
+            RetrofitClient.authToken = accessToken
         }
-        
-        tvFinding1Title.text = "$deficiency Detected"
-        tvFinding1Desc.text = "Analysis shows alignment issues on tooth #$tooth requiring clinical attention."
 
-        // Bind Treatment Summary
-        findViewById<TextView>(R.id.tvPatientRecommendation).text = recommendation
-        findViewById<TextView>(R.id.tvPatientExplanation).text = explanation
-        findViewById<TextView>(R.id.tvPatientSymmetry).text = symmetry
-        findViewById<TextView>(R.id.tvPatientGoldenRatio).text = goldenRatio
-        
-        // New fields
-        findViewById<TextView>(R.id.tvPatientMedications).text = intent.getStringExtra("EXTRA_MEDS") ?: "Standard oral care suggested."
-        findViewById<TextView>(R.id.tvPatientCareTips).text = intent.getStringExtra("EXTRA_CARE") ?: "Maintain standard 2x daily brushing and flossing."
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        val tvConfidence = findViewById<TextView>(R.id.tvConfidence)
+        val pbConfidence = findViewById<ProgressBar>(R.id.pbConfidence)
+        val tvFinding1Title = findViewById<TextView>(R.id.tvFinding1Title)
+        val tvFinding1Desc = findViewById<TextView>(R.id.tvFinding1Desc)
 
-        btnBack.setOnClickListener {
+        val caseId = intent.getIntExtra("EXTRA_CASE_ID", -1)
+
+        if (caseId != -1) {
+            fetchCaseDetails(caseId)
+        } else {
+            // Populate with intent data if caseId is missing (fallback)
+            populateUiFromIntent()
+        }
+
+        btnBack.setOnClickListener { 
+            val intent = Intent(this, PatientDashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
             finish()
         }
 
         // Bottom Navigation
-        val navHome = findViewById<LinearLayout>(R.id.navHome)
-        val navCases = findViewById<LinearLayout>(R.id.navCases)
-        val navReports = findViewById<LinearLayout>(R.id.navReports)
-        val navProfile = findViewById<LinearLayout>(R.id.navProfile)
-
-        navHome.setOnClickListener {
+        findViewById<LinearLayout>(R.id.navHome).setOnClickListener {
              startActivity(Intent(this, PatientDashboardActivity::class.java))
-             overridePendingTransition(0, 0)
              finish()
         }
-
-        navCases.setOnClickListener {
+        findViewById<LinearLayout>(R.id.navCases).setOnClickListener {
              startActivity(Intent(this, PatientCaseAllActivity::class.java))
-             overridePendingTransition(0, 0)
              finish()
         }
-
-        navReports.setOnClickListener {
-             startActivity(Intent(this, PatientReportActivity::class.java))
-             overridePendingTransition(0, 0)
+        findViewById<LinearLayout>(R.id.navReports).setOnClickListener {
+             startActivity(Intent(this, PatientCaseAllActivity::class.java))
              finish()
         }
     }
 
+    private fun fetchCaseDetails(caseId: Int) {
+        RetrofitClient.instance.getReport(caseId).enqueue(object : Callback<com.simats.smileai.network.Report> {
+            override fun onResponse(call: Call<com.simats.smileai.network.Report>, response: Response<com.simats.smileai.network.Report>) {
+                if (response.isSuccessful) {
+                    val report = response.body() ?: return
+                    
+                    findViewById<TextView>(R.id.tvFinding1Title).text = report.deficiency_addressed
+                    findViewById<TextView>(R.id.tvFinding1Desc).text = report.ai_reasoning
+                    
+                    val confidence = report.ai_score ?: 85
+                    findViewById<TextView>(R.id.tvConfidence).text = "$confidence%"
+                    findViewById<ProgressBar>(R.id.pbConfidence).progress = confidence
+
+                    findViewById<TextView>(R.id.tvPatientRecommendation).text = report.final_recommendation ?: "Clinical assessment recommended."
+                    findViewById<TextView>(R.id.tvPatientExplanation).text = report.ai_reasoning ?: "Based on AI analysis of your dental scans."
+                    
+                    findViewById<TextView>(R.id.tvRiskAnalysis).text = report.risk_analysis ?: "Standard clinical risk profile."
+                    findViewById<TextView>(R.id.tvAestheticPrognosis).text = report.aesthetic_prognosis ?: "Stable with regular monitoring."
+                    findViewById<TextView>(R.id.tvPlacementStrategy).text = report.placement_strategy ?: "Standard clinical protocol."
+                    
+                    findViewById<TextView>(R.id.tvPatientSymmetry).text = report.aesthetic_symmetry ?: "Optimal"
+                    findViewById<TextView>(R.id.tvPatientGoldenRatio).text = report.golden_ratio ?: "1.618"
+                    findViewById<TextView>(R.id.tvPatientMedications).text = report.medications ?: "Standard oral care suggested."
+                    findViewById<TextView>(R.id.tvPatientCareTips).text = report.care_instructions ?: "Maintain standard 2x daily brushing."
+                }
+            }
+            override fun onFailure(call: Call<com.simats.smileai.network.Report>, t: Throwable) {}
+        })
+    }
+
+    private fun populateUiFromIntent() {
+        val diagnosis = intent.getStringExtra("EXTRA_RECOMMENDATION") ?: "Clinical Assessment"
+        findViewById<TextView>(R.id.tvFinding1Title).text = diagnosis
+        findViewById<TextView>(R.id.tvFinding1Desc).text = intent.getStringExtra("EXTRA_EXPLANATION") ?: "Awaiting detailed analysis."
+        
+        val confidence = intent.getIntExtra("EXTRA_CONFIDENCE", 85)
+        findViewById<TextView>(R.id.tvConfidence).text = "$confidence%"
+        findViewById<ProgressBar>(R.id.pbConfidence).progress = confidence
+
+        findViewById<TextView>(R.id.tvPatientRecommendation).text = diagnosis
+        findViewById<TextView>(R.id.tvPatientExplanation).text = intent.getStringExtra("EXTRA_EXPLANATION") ?: "Based on initial AI triage."
+        findViewById<TextView>(R.id.tvPatientSymmetry).text = intent.getStringExtra("EXTRA_SYMMETRY") ?: "Optimal"
+        findViewById<TextView>(R.id.tvPatientMedications).text = intent.getStringExtra("EXTRA_MEDS") ?: "Standard oral care suggested."
+        findViewById<TextView>(R.id.tvPatientCareTips).text = intent.getStringExtra("EXTRA_CARE") ?: "Maintain standard brushing."
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        detector.close()
+        if (::detector.isInitialized) detector.close()
     }
 }

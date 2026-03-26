@@ -28,9 +28,7 @@ class PatientCaseAllActivity : AppCompatActivity() {
         }
 
         navReports.setOnClickListener {
-            startActivity(Intent(this, PatientReportActivity::class.java))
-            overridePendingTransition(0, 0)
-            finish()
+            // Already here (Reports now points to this case list)
         }
 
         navProfile.setOnClickListener {
@@ -77,11 +75,14 @@ class PatientCaseAllActivity : AppCompatActivity() {
                     val cases = response.body() ?: emptyList()
                     findViewById<TextView>(R.id.tabAll)?.text = "All (${cases.size})"
                     updateCasesUi(cases)
+                } else {
+                    val error = response.errorBody()?.string() ?: "Unknown error"
+                    android.widget.Toast.makeText(this@PatientCaseAllActivity, "Failed to load: $error", android.widget.Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: retrofit2.Call<List<com.simats.smileai.network.Case>>, t: Throwable) {
-                // Silent fail or Toast
+                android.widget.Toast.makeText(this@PatientCaseAllActivity, "Network Error: ${t.message}", android.widget.Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -133,9 +134,15 @@ class PatientCaseAllActivity : AppCompatActivity() {
             tvProgressText.text = "$progress%"
 
             itemView.setOnClickListener {
-                val intent = Intent(this, PatientReportActivity::class.java)
-                intent.putExtra("EXTRA_CASE_ID", case.id ?: -1)
-                startActivity(intent)
+                val dest = intent.getStringExtra("EXTRA_DESTINATION")
+                val target = if (dest == "timeline") {
+                    PatientRecentActivity::class.java
+                } else {
+                    PatientReportActivity::class.java
+                }
+                val nextIntent = Intent(this, target)
+                nextIntent.putExtra("EXTRA_CASE_ID", case.id ?: -1)
+                startActivity(nextIntent)
             }
 
             casesContainer.addView(itemView)

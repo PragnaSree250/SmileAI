@@ -82,6 +82,23 @@ class DentistDashboardActivity : ComponentActivity() {
              startActivity(Intent(this, DentistMenuBarActivity::class.java))
         }
 
+        // Stats Card Interactivity
+        val cardActive = tvActiveCount.parent as View
+        val cardPending = tvPendingCount.parent as View
+        val cardDone = tvDoneCount.parent as View
+        val cardPatients = tvPatientsCount.parent as View
+
+        val toAllCases = { filter: String? ->
+            val intent = Intent(this, DentistAllCasesActivity::class.java)
+            if (filter != null) intent.putExtra("FILTER_TYPE", filter)
+            startActivity(intent)
+        }
+
+        cardActive.setOnClickListener { toAllCases("Active") }
+        cardPending.setOnClickListener { toAllCases("Pending") }
+        cardDone.setOnClickListener { toAllCases("Done") }
+        cardPatients.setOnClickListener { toAllCases(null) }
+
         loadDashboardData()
     }
 
@@ -151,7 +168,7 @@ class DentistDashboardActivity : ComponentActivity() {
 
             val fullName = "${case.patient_first_name} ${case.patient_last_name}"
             tvName.text = fullName
-            tvInitial.text = case.patient_first_name.take(1).uppercase()
+            tvInitial.text = case.patient_first_name?.take(1)?.uppercase() ?: "P"
             tvDetail.text = "${case.restoration_type ?: "Case"} ${case.tooth_numbers ?: ""}"
             tvStatus.text = case.status ?: "Active"
 

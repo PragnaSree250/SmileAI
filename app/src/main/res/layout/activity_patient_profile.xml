@@ -4,8 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_patient_dashboard"
+    android:background="#F8FAFC"
     tools:context=".PatientProfileActivity">
+
+    <!-- Header Background with Arc -->
+    <View
+        android:id="@+id/headerBg"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_patient_dashboard"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/headerTitle"
@@ -13,424 +21,564 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Profile"
-        android:textColor="#f8fafc"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:text="My Profile"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="sans-serif"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btnLogoutTop"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        android:padding="8dp"
+        android:padding="10dp"
         android:src="@drawable/ic_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#f8fafc" />
+        app:tint="#FFFFFF" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerTitle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingBottom="24dp">
+            android:paddingHorizontal="20dp">
 
-            <!-- User Header -->
-            <LinearLayout
+            <!-- Profile Summary Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvAvatarInitial"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/bg_avatar_circle_blue"
-                    android:gravity="center"
-                    android:text="SJ"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"/>
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <FrameLayout
+                        android:layout_width="100dp"
+                        android:layout_height="100dp">
+                        
+                        <TextView
+                            android:id="@+id/tvAvatarInitial"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_avatar_circle_blue"
+                            android:gravity="center"
+                            android:text="SJ"
+                            android:textColor="#FFFFFF"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
+                        
+                        <ImageView
+                            android:id="@+id/ivProfilePhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+                        
+                        <ImageView
+                            android:id="@+id/btnEditPhoto"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="bottom|end"
+                            android:background="@drawable/bg_circle_white"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_edit"
+                            app:tint="#1D4ED8"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/tvPatientName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-black"
                         android:text="Sarah Johnson"
-                        android:textColor="#f8fafc"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif"/>
+                        android:textColor="#0F172A"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/tvPatientId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ID: #PT-8492"
-                        android:textColor="#94a3b8"
-                        android:textSize="14sp"
-                        android:fontFamily="sans-serif"/>
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Patient ID: p-8492"
+                        android:textColor="#64748B"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tvPlanType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Premium Plan"
-                        android:textColor="#1d4ed8"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
+                        android:layout_marginTop="12dp"
                         android:background="@drawable/bg_badge_premium_blue"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:fontFamily="sans-serif"/>
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="6dp"
+                        android:text="Premium Plan"
+                        android:textColor="#1D4ED8"
+                        android:textSize="12sp" />
+
                 </LinearLayout>
-            </LinearLayout>
-
-            <!-- Contact Card -->
-            <androidx.cardview.widget.CardView
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="32dp"
-                 app:cardBackgroundColor="#ffffff"
-                 app:cardCornerRadius="24dp"
-                 app:cardElevation="0dp">
-
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:padding="24dp"
-                     android:orientation="vertical">
-
-                     <!-- Phone -->
-                     <LinearLayout
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:orientation="horizontal"
-                         android:gravity="center_vertical">
-                         
-                         <ImageView
-                             android:layout_width="24dp"
-                             android:layout_height="24dp"
-                             android:src="@drawable/ic_phone_outline"
-                             app:tint="#64748b"/>
-                         
-                         <LinearLayout
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginStart="16dp"
-                             android:orientation="vertical">
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Phone Number" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
-                             <TextView
-                                 android:id="@+id/tvPhoneNumber"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:text="+1 (555) 123-4567"
-                                 android:textColor="#0f172a"
-                                 android:textSize="14sp"
-                                 android:textStyle="bold"
-                                 android:fontFamily="sans-serif"/>
-                         </LinearLayout>
-                     </LinearLayout>
-
-                     <View
-                         android:layout_width="match_parent"
-                         android:layout_height="1dp"
-                         android:background="#f1f5f9"
-                         android:layout_marginVertical="16dp"
-                         android:layout_marginStart="40dp"/>
-
-                     <!-- Email -->
-                     <LinearLayout
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:orientation="horizontal"
-                         android:gravity="center_vertical">
-                         
-                         <ImageView
-                             android:layout_width="24dp"
-                             android:layout_height="24dp"
-                             android:src="@drawable/ic_email_outline"
-                             app:tint="#64748b"/>
-                         
-                         <LinearLayout
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginStart="16dp"
-                             android:orientation="vertical">
-                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Email Address" android:textColor="#94a3b8" android:textSize="12sp" android:fontFamily="sans-serif"/>
-                             <TextView
-                                 android:id="@+id/tvEmailAddress"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:text="sarah.j@example.com"
-                                 android:textColor="#0f172a"
-                                 android:textSize="14sp"
-                                 android:textStyle="bold"
-                                 android:fontFamily="sans-serif"/>
-                         </LinearLayout>
-                     </LinearLayout>
-
-                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Settings Card -->
+            <!-- Personal Info Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Personal Information"
+                android:textColor="#64748B"
+                android:textSize="14sp"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"/>
+
             <androidx.cardview.widget.CardView
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="24dp"
-                 app:cardBackgroundColor="#ffffff"
-                 app:cardCornerRadius="24dp"
-                 app:cardElevation="0dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp">
 
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:padding="8dp"
-                     android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                     <!-- Notifications -->
-                     <LinearLayout
-                         android:id="@+id/btnNotifications"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:clickable="true"
-                         android:focusable="true"
-                         android:background="?android:attr/selectableItemBackground">
-                         
-                         <LinearLayout
-                             android:layout_width="36dp"
-                             android:layout_height="36dp"
-                             android:background="@drawable/bg_icon_circle_blue_light"
-                             android:gravity="center">
-                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_notification" app:tint="#1d4ed8"/>
-                         </LinearLayout>
-                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="16dp" android:text="Notifications" android:textColor="#334155" android:textSize="14sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="On" android:textColor="#94a3b8" android:textSize="12sp" android:layout_marginEnd="8dp" android:fontFamily="sans-serif"/>
-                         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_chevron_right" app:tint="#0f172a"/>
-                     </LinearLayout>
+                    <!-- Phone -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#f1f5f9" android:layout_marginStart="68dp"/>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_blue_light"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_phone_outline"
+                            app:tint="#1D4ED8" />
 
-                     <!-- Privacy -->
-                     <LinearLayout
-                         android:id="@+id/btnPrivacy"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:clickable="true"
-                         android:focusable="true"
-                         android:background="?android:attr/selectableItemBackground">
-                         
-                         <LinearLayout
-                             android:layout_width="36dp"
-                             android:layout_height="36dp"
-                             android:background="@drawable/bg_icon_circle_green_light"
-                             android:gravity="center">
-                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_shield_outline" app:tint="#166534"/>
-                         </LinearLayout>
-                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="16dp" android:text="Privacy &amp; Security" android:textColor="#334155" android:textSize="14sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_chevron_right" app:tint="#0f172a"/>
-                     </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#f1f5f9" android:layout_marginStart="68dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phone Number"
+                                android:textColor="#94A3B8"
+                                android:textSize="12sp" />
 
-                     <!-- Terms -->
-                     <LinearLayout
-                         android:id="@+id/btnTerms"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:clickable="true"
-                         android:focusable="true"
-                         android:background="?android:attr/selectableItemBackground">
-                         
-                         <LinearLayout
-                             android:layout_width="36dp"
-                             android:layout_height="36dp"
-                             android:background="@drawable/bg_icon_circle_purple_light"
-                             android:gravity="center">
-                              <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_file_text_outline" app:tint="#a855f7"/>
-                         </LinearLayout>
-                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="16dp" android:text="Terms &amp; Conditions" android:textColor="#334155" android:textSize="14sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_chevron_right" app:tint="#0f172a"/>
-                     </LinearLayout>
+                             <EditText
+                                android:id="@+id/etPhoneNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="+1 (555) 123-4567"
+                                android:textColor="#0F172A"
+                                android:textSize="15sp"
+                                android:inputType="phone"
+                                android:paddingVertical="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
 
-                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#f1f5f9" android:layout_marginStart="68dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:layout_marginStart="56dp"
+                        android:background="#F1F5F9" />
 
-                     <!-- Help -->
-                     <LinearLayout
-                         android:id="@+id/btnHelp"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:padding="16dp"
-                         android:gravity="center_vertical"
-                         android:clickable="true"
-                         android:focusable="true"
-                         android:background="?android:attr/selectableItemBackground">
-                         
-                         <LinearLayout
-                             android:layout_width="36dp"
-                             android:layout_height="36dp"
-                             android:background="@drawable/bg_icon_circle_orange_light"
-                             android:gravity="center">
-                             <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_help_circle_outline" app:tint="#f59e0b"/>
-                         </LinearLayout>
-                         <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="16dp" android:text="Help &amp; Support" android:textColor="#334155" android:textSize="14sp" android:textStyle="bold" android:fontFamily="sans-serif"/>
-                         <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_chevron_right" app:tint="#0f172a"/>
-                     </LinearLayout>
+                    <!-- Email -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                 </LinearLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle_blue_light"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_email_outline"
+                            app:tint="#1D4ED8" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Email Address"
+                                android:textColor="#94A3B8"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvEmailAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="sarah.j@example.com"
+                                android:textColor="#0F172A"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- App Settings Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="App Settings"
+                android:textColor="#64748B"
+                android:textSize="14sp"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/btnNotifications"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_icon_circle_blue_light"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_notification"
+                            app:tint="#1D4ED8" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Notifications"
+                            android:textColor="#334155"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="#94A3B8" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="64dp"
+                        android:background="#F1F5F9" />
+
+                    <LinearLayout
+                        android:id="@+id/btnPrivacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_icon_circle_green_light"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_shield_outline"
+                            app:tint="#166534" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                             android:text="Privacy &amp; Policy"
+                            android:textColor="#334155"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="#94A3B8" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="64dp"
+                        android:background="#F1F5F9" />
+
+                    <LinearLayout
+                        android:id="@+id/btnTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_icon_circle_purple_light"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_file_text_outline"
+                            app:tint="#A855F7" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Terms &amp; Conditions"
+                            android:textColor="#334155"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="#94A3B8" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="64dp"
+                        android:background="#F1F5F9" />
+
+                    <LinearLayout
+                        android:id="@+id/btnDeleteAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_icon_circle_red_light"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_trash_outline"
+                            app:tint="#DC2626" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Delete Account"
+                            android:textColor="#DC2626"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="#94A3B8" />
+                    </LinearLayout>
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:gravity="center"
-                android:text="Version 2.4.0 (Build 892)"
-                android:textColor="#94a3b8"
-                android:alpha="0.5"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif"/>
+                android:text="Version 2.4.5"
+                android:textColor="#94A3B8"
+                android:textSize="12sp" />
 
+            <Button
+                android:id="@+id/btnSaveChanges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#1D4ED8"
+                android:text="Save Changes"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="12dp"
+                android:paddingVertical="12dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
-    <LinearLayout
-        android:id="@+id/bottomNavigation"
+    <!-- Floating Bottom Navigation -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottomNavigationCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:elevation="16dp"
-        android:orientation="horizontal"
-        android:paddingVertical="12dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="12dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:id="@+id/navHome"
-            android:layout_width="0dp"
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:background="#FFFFFF"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_nav_home"
-                app:tint="#94a3b8"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/navHome"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Home"
-                android:textColor="#94a3b8"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif"/>
-        </LinearLayout>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_home"
+                    app:tint="#94A3B8" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Home"
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp" />
+            </LinearLayout>
 
-        <LinearLayout
-             android:id="@+id/navCases"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_nav_cases"
-                app:tint="#94a3b8"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/navCases"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Cases"
-                android:textColor="#94a3b8"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif"/>
-        </LinearLayout>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_cases"
+                    app:tint="#94A3B8" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Cases"
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp" />
+            </LinearLayout>
 
-        <LinearLayout
-             android:id="@+id/navReports"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_nav_reports"
-                app:tint="#94a3b8"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/navReports"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Reports"
-                android:textColor="#94a3b8"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif"/>
-        </LinearLayout>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_reports"
+                    app:tint="#94A3B8" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Reports"
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp" />
+            </LinearLayout>
 
-        <LinearLayout
-             android:id="@+id/navProfile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_nav_profile"
-                app:tint="#3b82f6"/> <!-- Active Color -->
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/navProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Profile"
-                android:textColor="#3b82f6"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_nav_profile"
+                    app:tint="#3B82F6" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Profile"
+                    android:textColor="#3B82F6"
+                    android:textSize="11sp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

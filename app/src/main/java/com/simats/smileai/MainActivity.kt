@@ -7,8 +7,8 @@ import androidx.activity.ComponentActivity
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Redirect to RoleSelectionActivity as entry point
-        startActivity(Intent(this, RoleSelectionActivity::class.java))
+        // Redirect to SmartLoginActivity as entry point
+        startActivity(Intent(this, SmartLoginActivity::class.java))
         finish()
     }
 }

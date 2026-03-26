@@ -65,143 +65,22 @@
                 android:textStyle="bold"
                 android:fontFamily="sans-serif"/>
 
-            <!-- Medication 1 -->
             <LinearLayout
+                android:id="@+id/llMedicationsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_card_dark"
-                android:gravity="center_vertical"
-                android:padding="16dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_icon_light_purple"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_pill"
-                    app:tint="#a855f7" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+                
+                <TextView
+                    android:id="@+id/tvNoMedications"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvMedName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No active medications"
-                        android:textColor="#f8fafc"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:src="@drawable/ic_schedule"
-                            app:tint="#94a3b8" />
-
-                        <TextView
-                            android:id="@+id/tvMedFrequency"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="-"
-                            android:textColor="#94a3b8"
-                            android:textSize="12sp"
-                            android:fontFamily="sans-serif"/>
-
-                        <TextView
-                            android:id="@+id/tvMedDuration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="-"
-                            android:textColor="#94a3b8"
-                            android:textSize="12sp"
-                            android:fontFamily="sans-serif"/>
-
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-             <!-- Medication 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_card_dark"
-                android:gravity="center_vertical"
-                android:padding="16dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_icon_light_blue"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_pill"
-                    app:tint="#3b82f6" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ibuprofen 400mg"
-                        android:textColor="#f8fafc"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:gravity="center_vertical">
-
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:src="@drawable/ic_schedule"
-                            app:tint="#94a3b8" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="As needed"
-                            android:textColor="#94a3b8"
-                            android:textSize="12sp"
-                            android:fontFamily="sans-serif"/>
-
-                         <TextView
-                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="For pain"
-                            android:textColor="#94a3b8"
-                            android:textSize="12sp"
-                            android:fontFamily="sans-serif"/>
-
-                    </LinearLayout>
-                </LinearLayout>
+                    android:text="No active medications"
+                    android:textColor="#94a3b8"
+                    android:gravity="center"
+                    android:paddingTop="16dp"
+                    android:visibility="visible"/>
             </LinearLayout>
 
             <TextView
@@ -294,11 +173,45 @@
 
              </LinearLayout>
 
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="32dp"
+                 android:text="Emergency Message to Dentist"
+                 android:textColor="#cbd5e1"
+                 android:textSize="16sp"
+                 android:textStyle="bold"
+                 android:fontFamily="sans-serif"/>
+
+             <EditText
+                 android:id="@+id/etEmergencyMessage"
+                 android:layout_width="match_parent"
+                 android:layout_height="120dp"
+                 android:layout_marginTop="12dp"
+                 android:background="@drawable/bg_card_semi_transparent"
+                 android:gravity="top"
+                 android:hint="Type your message here..."
+                 android:padding="16dp"
+                 android:textColor="#f8fafc"
+                 android:textColorHint="#64748b"
+                 android:textSize="14sp" />
+
+             <Button
+                 android:id="@+id/btnSendMessage"
+                 android:layout_width="match_parent"
+                 android:layout_height="56dp"
+                 android:layout_marginTop="12dp"
+                 android:backgroundTint="#3b82f6"
+                 android:text="Send Message"
+                 android:textAllCaps="false"
+                 android:textColor="#ffffff"
+                 app:cornerRadius="12dp" />
+
              <LinearLayout
                  android:id="@+id/btnEmergency"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:layout_marginTop="48dp"
+                 android:layout_marginTop="24dp"
                  android:background="@drawable/bg_button_emergency"
                  android:gravity="center"
                  android:paddingVertical="14dp">
@@ -313,7 +226,7 @@
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
                      android:layout_marginStart="8dp"
-                     android:text="Emergency Contact"
+                     android:text="Emergency Call"
                      android:textColor="#b91c1c"
                      android:textSize="16sp"
                      android:textStyle="bold"

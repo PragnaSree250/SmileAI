@@ -18,5 +18,9 @@ class DentistSettingsActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.btnTerms).setOnClickListener {
             startActivity(Intent(this, PatientTermsAndConditionsActivity::class.java))
         }
+
+        findViewById<LinearLayout>(R.id.btnPrivacy).setOnClickListener {
+            startActivity(Intent(this, PatientPrivacyAndSecurityActivity::class.java))
+        }
     }
 }

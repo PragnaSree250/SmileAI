@@ -44,7 +44,7 @@
                         android:id="@+id/tvPatientGreetingName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sarah \uD83D\uDC4B"
+                        android:text="Sarah \uD83D\uDC4B ✨ 🦷"
                         android:textColor="#f8fafc"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -221,6 +221,70 @@
 
             </GridLayout>
 
+            <!-- Upcoming Appointment -->
+            <LinearLayout
+                android:id="@+id/llUpcomingAppointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_semi_transparent"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginBottom="24dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upcoming Appointment"
+                    android:textColor="#3b82f6"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.05"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvAppointmentDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not scheduled"
+                            android:textColor="#f8fafc"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tvAppointmentDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textColor="#94a3b8"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_icon_circle_dark"
+                        android:backgroundTint="#0f172a"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_schedule"
+                        app:tint="#3b82f6"/>
+                </LinearLayout>
+            </LinearLayout>
+
             <!-- Recent Activity -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -255,7 +319,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:padding="16dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="24dp">
 
                 <ImageView
                     android:layout_width="48dp"
@@ -270,44 +334,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="Clinical Findings Summary"
-                    android:textColor="#f8fafc"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward"
-                    app:tint="#94a3b8" />
-            </LinearLayout>
-
-            <!-- Activity Item 2 -->
-             <LinearLayout
-                android:id="@+id/recentActivity2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_semi_transparent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="16dp"
-                android:layout_marginBottom="24dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/bg_icon_circle_green"
-                    android:backgroundTint="#dcfce7"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_calendar_blue"
-                    app:tint="#10b981" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="16dp"
-                    android:text="Appointment Confirmed"
+                    android:text="My Cases &amp; Reports"
                     android:textColor="#f8fafc"
                     android:textSize="16sp"
                     android:textStyle="bold" />

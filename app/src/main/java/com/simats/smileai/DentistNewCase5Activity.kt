@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.simats.smileai.ml.SmileAIAnalyzer
 import com.simats.smileai.network.ApiResponse
 import com.simats.smileai.network.Case
@@ -28,7 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DentistNewCase5Activity : ComponentActivity() {
+class DentistNewCase5Activity : AppCompatActivity() {
 
     private lateinit var analyzer: SmileAIAnalyzer
     private var faceUriStr: String? = null
@@ -101,6 +101,9 @@ class DentistNewCase5Activity : ComponentActivity() {
             return
         }
 
+        // Fix: Ensure the global RetrofitClient knows about the token for the interceptor
+        RetrofitClient.authToken = token
+
         val patientFullName = intent.getStringExtra("EXTRA_PATIENT_NAME") ?: "Jane Doe"
         val names = patientFullName.split(" ", limit = 2)
         val firstName = names.getOrNull(0) ?: "Jane"
@@ -117,8 +120,14 @@ class DentistNewCase5Activity : ComponentActivity() {
             condition = intent.getStringExtra("EXTRA_CONDITION") ?: "General",
             restoration_type = intent.getStringExtra("EXTRA_RESTORATION"),
             material = intent.getStringExtra("EXTRA_MATERIAL"),
-            shade = intent.getStringExtra("EXTRA_SHADE")
+            shade = intent.getStringExtra("EXTRA_SHADE"),
+            intercanine_width = intent.getStringExtra("EXTRA_INTERCANINE_WIDTH"),
+            incisor_length = intent.getStringExtra("EXTRA_INCISOR_LENGTH"),
+            abutment_health = intent.getStringExtra("EXTRA_ABUTMENT_HEALTH"),
+            gingival_architecture = intent.getStringExtra("EXTRA_GINGIVAL_ARCHITECTURE")
         )
+
+        Log.d("SmileAI", "Submitting Case Context: $caseData")
 
         val progressDialog = android.app.ProgressDialog(this).apply {
             setMessage("Creating case and running analysis...")
@@ -130,6 +139,7 @@ class DentistNewCase5Activity : ComponentActivity() {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful && response.body()?.status == "success") {
                     val body = response.body()
+                    Log.d("SmileAI", "Case Creation Success: body=$body")
                     val caseId = body?.case_id ?: -1
                     val suggestedRestoration = body?.suggested_restoration
                     val suggestedMaterial = body?.suggested_material
@@ -138,12 +148,18 @@ class DentistNewCase5Activity : ComponentActivity() {
                 } else {
                     progressDialog.dismiss()
                     val errorMsg = response.errorBody()?.string() ?: response.message()
-                    Toast.makeText(this@DentistNewCase5Activity, "Submission Failed: $errorMsg", Toast.LENGTH_LONG).show()
+                    
+                    // Specific message for authorization failure
+                    if (response.code() == 401) {
+                        Toast.makeText(this@DentistNewCase5Activity, "Session expired or unauthorized. Please login again.", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this@DentistNewCase5Activity, "Case Creation Failed: $errorMsg", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 progressDialog.dismiss()
-                Toast.makeText(this@DentistNewCase5Activity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@DentistNewCase5Activity, "Network Error (Case Creation): ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -186,6 +202,9 @@ class DentistNewCase5Activity : ComponentActivity() {
                 } else {
                     val err = response.errorBody()?.string() ?: response.message()
                     Log.e("SmileAI", "File ${file.name} upload failed: $err")
+                    if (response.code() == 401) {
+                        Toast.makeText(this@DentistNewCase5Activity, "Authorization failed during upload.", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 callback()
             }
@@ -202,41 +221,91 @@ class DentistNewCase5Activity : ComponentActivity() {
         RetrofitClient.instance.analyzeCase(caseId).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 progressDialog.dismiss()
-                if (response.isSuccessful && response.body()?.status == "success") {
+                if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!
-                    navigateToReport(result, caseId, suggestedRestoration, suggestedMaterial)
+                    if (result.status == "success") {
+                        Log.d("SmileAI", "AI Analysis Success: deficiency=${result.ai_deficiency}, score=${result.ai_score}")
+                        navigateToReport(result, caseId, suggestedRestoration, suggestedMaterial)
+                    } else {
+                        showErrorDialog("Analysis Failed", result.message ?: "The AI engine encountered an error.")
+                    }
                 } else {
                     val err = response.errorBody()?.string() ?: response.message()
-                    Toast.makeText(this@DentistNewCase5Activity, "AI Analysis Error: $err", Toast.LENGTH_LONG).show()
+                    showErrorDialog("Server Error", "Report generation failed: $err")
                 }
             }
 
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 progressDialog.dismiss()
-                Toast.makeText(this@DentistNewCase5Activity, "Network Error during AI: ${t.message}", Toast.LENGTH_SHORT).show()
+                showErrorDialog("Network Error", "Failed to reach server: ${t.message}")
             }
         })
     }
 
+    private fun showErrorDialog(title: String, message: String) {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
     private fun navigateToReport(result: ApiResponse, realCaseId: Int, suggestedRestoration: String? = null, suggestedMaterial: String? = null) {
-        val nextIntent = Intent(this, DentistReport1Activity::class.java).apply {
-            putExtras(intent)
-            putExtra("EXTRA_CASE_ID", realCaseId)
-            putExtra("EXTRA_AI_DEFICIENCY", result.ai_deficiency ?: "General Assessment")
-            putExtra("EXTRA_AI_REPORT", result.ai_report ?: "Analysis complete.")
-            putExtra("EXTRA_AI_SCORE", result.ai_score ?: 90)
-            putExtra("EXTRA_AI_GRADE", result.ai_grade ?: "A")
-            putExtra("EXTRA_AI_RECOMMENDATION", result.ai_recommendation ?: "Follow standard care.")
+        Log.d("SmileAI", "Navigating to Report for Case ID: $realCaseId")
+        try {
+            val nextIntent = Intent(this, DentistReport1Activity::class.java).apply {
+                // Manually pass critical data to avoid carrying over overly large Intent from previous steps
+                putExtra("EXTRA_PATIENT_NAME", intent.getStringExtra("EXTRA_PATIENT_NAME"))
+                putExtra("EXTRA_PATIENT_DOB", intent.getStringExtra("EXTRA_PATIENT_DOB"))
+                putExtra("EXTRA_GENDER", intent.getStringExtra("EXTRA_GENDER"))
+                putExtra("EXTRA_SCAN_ID", intent.getStringExtra("EXTRA_SCAN_ID"))
+                putExtra("EXTRA_CONDITION", intent.getStringExtra("EXTRA_CONDITION"))
+                putExtra("EXTRA_TOOTH_NUMBERS", intent.getStringExtra("EXTRA_TOOTH_NUMBERS"))
+                putExtra("EXTRA_RESTORATION", intent.getStringExtra("EXTRA_RESTORATION"))
+                // Pass all results
+                putExtra("EXTRA_CASE_ID", realCaseId)
+                putExtra("EXTRA_AI_DEFICIENCY", result.ai_deficiency ?: "General Assessment")
+                putExtra("EXTRA_AI_REPORT", result.ai_report ?: "Analysis complete.")
+                putExtra("EXTRA_AI_SCORE", result.ai_score?.toString() ?: "85")
+                putExtra("EXTRA_AI_GRADE", result.ai_grade ?: "B")
+                putExtra("EXTRA_AI_RECOMMENDATION", result.ai_recommendation ?: "Standard care.")
+                
+                // Extra detailed results
+                putExtra("EXTRA_CARIES_STATUS", result.caries_status ?: "Normal")
+                putExtra("EXTRA_HYPODONTIA_STATUS", result.hypodontia_status ?: "Normal")
+                putExtra("EXTRA_DISCOLORATION_STATUS", result.discoloration_status ?: "Normal")
+                putExtra("EXTRA_GUM_STATUS", result.gum_inflammation_status ?: "Normal")
+                putExtra("EXTRA_CALCULUS_STATUS", result.calculus_status ?: "Normal")
+                putExtra("EXTRA_REDNESS_STATUS", result.redness_analysis ?: "Normal")
+                putExtra("EXTRA_SYMMETRY_STATUS", result.aesthetic_symmetry ?: "Symmetric")
+                putExtra("EXTRA_GOLDEN_RATIO", result.golden_ratio ?: "1.618 Match")
+                
+                // Clinical data
+                putExtra("EXTRA_RISK_ANALYSIS", result.risk_analysis ?: "Stable.")
+                putExtra("EXTRA_AESTHETIC_PROGNOSIS", result.aesthetic_prognosis ?: "Good.")
+                putExtra("EXTRA_PLACEMENT_STRATEGY", result.placement_strategy ?: "Standard protocol.")
+                
+                // Original inputs
+                putExtra("EXTRA_FACE_IMAGE_URI", intent.getStringExtra("EXTRA_FACE_IMAGE_URI"))
+                putExtra("EXTRA_INTRA_IMAGE_URI", intent.getStringExtra("EXTRA_INTRA_IMAGE_URI"))
+                putExtra("EXTRA_AI_SUGGESTED_RESTORATION", result.suggested_restoration ?: suggestedRestoration)
+                putExtra("EXTRA_AI_SUGGESTED_MATERIAL", result.suggested_material ?: suggestedMaterial)
+                
+                // Flag to indicate this is a fresh AI report
+                putExtra("IS_NEW_ANALYSIS", true)
+                // Simplified flags to avoid clearing the entire task stack incorrectly
+                // FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TOP can be problematic if misconfigured
+                addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) 
+            }
             
-            putExtra("EXTRA_AI_SUGGESTED_RESTORATION", suggestedRestoration ?: result.suggested_restoration)
-            putExtra("EXTRA_AI_SUGGESTED_MATERIAL", suggestedMaterial ?: result.suggested_material)
-            
-            putExtra("EXTRA_CARIES_STATUS", result.caries_status)
-            putExtra("EXTRA_GUM_STATUS", result.gum_inflammation_status)
-            putExtra("EXTRA_AI_SYMMETRY", result.aesthetic_symmetry)
+            Log.d("SmileAI", "Starting DentistReport1Activity for Case $realCaseId")
+            startActivity(nextIntent)
+            Log.d("SmileAI", "Report Activity started successfully")
+            finish() // Important: Finish Step 5 so it's not in the stack if user hits back from Report
+        } catch (e: Exception) {
+            Log.e("SmileAI", "Failed to start Report Activity: ${e.message}")
+            Toast.makeText(this, "Error opening report. Please try again from dashboard.", Toast.LENGTH_LONG).show()
         }
-        startActivity(nextIntent)
-        finish()
     }
 
     private fun getFileFromUri(uri: Uri, fileName: String): File? {

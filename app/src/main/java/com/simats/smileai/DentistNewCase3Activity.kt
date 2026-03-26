@@ -3,21 +3,21 @@ package com.simats.smileai
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class DentistNewCase3Activity : ComponentActivity() {
+class DentistNewCase3Activity : AppCompatActivity() {
 
     private var selectedRestoration: String? = null
     private var selectedMaterial: String? = null
 
-    private lateinit var etCondition: EditText
+    private lateinit var conditionSpinner: Spinner
     private lateinit var etToothNumbers: EditText
 
     private lateinit var cardCrown: LinearLayout
@@ -34,8 +34,13 @@ class DentistNewCase3Activity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dentist_new_case_3)
 
-        etCondition = findViewById(R.id.etCondition)
+        conditionSpinner = findViewById(R.id.conditionSpinner)
         etToothNumbers = findViewById(R.id.etToothNumbers)
+
+        val conditionOptions = arrayOf("Select Condition", "Calculus", "Caries", "Gingivitis", "Hypodontia", "Healthy", "Tooth Discoloration")
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, conditionOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        conditionSpinner.adapter = adapter
 
         // Initialize Restoration Cards
         cardCrown = findViewById(R.id.cardCrown)
@@ -69,11 +74,11 @@ class DentistNewCase3Activity : ComponentActivity() {
         btnBack.setOnClickListener { finish() }
         btnPrevious.setOnClickListener { finish() }
         btnContinue.setOnClickListener {
-            val condition = etCondition.text.toString().trim()
+            val condition = if (conditionSpinner.selectedItemPosition > 0) conditionSpinner.selectedItem.toString() else ""
             val toothNumbers = etToothNumbers.text.toString().trim()
 
             if (condition.isEmpty() || toothNumbers.isEmpty()) {
-                Toast.makeText(this, "Please enter clinical condition and tooth numbers", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please select clinical condition and enter tooth numbers", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -91,31 +96,27 @@ class DentistNewCase3Activity : ComponentActivity() {
     }
 
     private fun setupAiSuggestions() {
-        etCondition.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                val input = s.toString().lowercase()
+        conditionSpinner.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == 0) return
+                val input = parent?.getItemAtPosition(position).toString().lowercase()
                 when {
-                    input.contains("missing") || input.contains("gap") || input.contains("hypodontia") -> {
+                    input.contains("hypodontia") || input.contains("missing") -> {
                         selectRestoration("Bridge", cardBridge, isAiSuggested = true)
                         selectMaterial("Zirconia", cardZirconia, isAiSuggested = true)
                     }
-                    input.contains("caries") || input.contains("cavity") || input.contains("decay") -> {
+                    input.contains("caries") -> {
                         selectRestoration("Crown", cardCrown, isAiSuggested = true)
                         selectMaterial("PFM", cardPFM, isAiSuggested = true)
                     }
-                    input.contains("discolor") || input.contains("stain") || input.contains("yellow") -> {
+                    input.contains("discoloration") -> {
                         selectRestoration("Veneer", cardVeneer, isAiSuggested = true)
                         selectMaterial("Lithium Disilicate", cardLithium, isAiSuggested = true)
                     }
-                    input.contains("fracture") || input.contains("chip") || input.contains("broken") -> {
-                        selectRestoration("Inlay/Onlay", cardInlayOnlay, isAiSuggested = true)
-                        selectMaterial("Zirconia", cardZirconia, isAiSuggested = true)
-                    }
                 }
             }
-        })
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        }
     }
 
     private fun selectRestoration(type: String, selectedCard: LinearLayout, isAiSuggested: Boolean = false) {
