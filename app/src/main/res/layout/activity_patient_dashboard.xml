@@ -44,7 +44,7 @@
                         android:id="@+id/tvPatientGreetingName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sarah \uD83D\uDC4B ✨ 🦷"
+                        android:text="Sarah ✨ 🦷"
                         android:textColor="#f8fafc"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -340,6 +340,56 @@
                     android:textStyle="bold" />
 
                  <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_arrow_forward"
+                    app:tint="#94a3b8" />
+            </LinearLayout>
+
+            <!-- Brushing Timer -->
+            <LinearLayout
+                android:id="@+id/btnBrushingTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_semi_transparent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_icon_circle_dark"
+                    android:backgroundTint="#0f172a"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_schedule"
+                    app:tint="#38bdf8" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2-Min Brushing Timer"
+                        android:textColor="#f8fafc"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maintain perfect oral hygiene"
+                        android:textColor="#94a3b8"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_forward"

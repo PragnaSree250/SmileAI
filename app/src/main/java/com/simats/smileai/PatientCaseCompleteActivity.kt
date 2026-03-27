@@ -17,7 +17,7 @@ class PatientCaseCompleteActivity : ComponentActivity() {
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
 
         navReports.setOnClickListener {
-            startActivity(Intent(this, PatientCaseAllActivity::class.java))
+            startActivity(Intent(this, PatientReportActivity::class.java))
             overridePendingTransition(0, 0)
             finish()
         }

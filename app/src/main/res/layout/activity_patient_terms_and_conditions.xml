@@ -290,7 +290,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="By using DentAI Care, you agree to these terms"
+                android:text="By using Smile AI, you agree to these terms"
                 android:textColor="#94a3b8"
                 android:textSize="12sp"
                 android:gravity="center"

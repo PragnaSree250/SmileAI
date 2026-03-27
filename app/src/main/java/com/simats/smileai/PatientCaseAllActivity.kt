@@ -28,7 +28,8 @@ class PatientCaseAllActivity : AppCompatActivity() {
         }
 
         navReports.setOnClickListener {
-            // Already here (Reports now points to this case list)
+            startActivity(Intent(this, PatientReportActivity::class.java))
+            overridePendingTransition(0, 0)
         }
 
         navProfile.setOnClickListener {

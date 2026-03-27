@@ -1,84 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_patient_login"
-    android:fillViewport="true"
-    tools:context=".PatientSignUpActivity">
+    android:background="@drawable/splash_background">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <LinearLayout
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_back_arrow"
-                android:tint="#ffffff" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="24dp" />
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_smile_logo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Patient Sign Up"
-            android:textColor="#f8fafc"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="24dp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_background"
-            android:backgroundTint="#ffffff"
             android:orientation="vertical"
             android:padding="24dp">
 
-            <EditText
-                android:id="@+id/etFullName"
+            <LinearLayout
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_back_arrow"
+                    android:tint="#ffffff" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_welcome_smile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Patient Sign Up"
+                android:textColor="#f8fafc"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_input_box"
-                android:backgroundTint="#f1f5f9"
-                android:fontFamily="sans-serif"
-                android:hint="Full Name"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:padding="16dp"
-                android:textColor="#0f172a"
-                android:textColorHint="#94a3b8"
-                android:textSize="16sp" />
+                android:background="@drawable/card_background"
+                android:backgroundTint="#ffffff"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <EditText
+                    android:id="@+id/etFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_input_box"
+                    android:backgroundTint="#f1f5f9"
+                    android:fontFamily="sans-serif"
+                    android:hint="Full Name"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:padding="16dp"
+                    android:textColor="#0f172a"
+                    android:textColorHint="#94a3b8"
+                    android:textSize="16sp" />
 
 
             <EditText
@@ -175,6 +179,19 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="powered by SIMTAS engineering"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-light"
+        android:letterSpacing="0.05" />
+
+</RelativeLayout>

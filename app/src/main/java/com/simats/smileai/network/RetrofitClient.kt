@@ -7,8 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    // Updated to your IP: 10.82.120.107
-    const val BASE_URL = "http://10.82.120.107:5000/"
+    // Updated to your IP: 180.235.121.253
+    const val BASE_URL = "http://180.235.121.253:8116/"
     var authToken: String? = null
 
     private val logging = HttpLoggingInterceptor().apply {

@@ -33,10 +33,9 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_smile_logo"
-            app:tint="#2dd4bf"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_welcome_smile"
             android:layout_marginStart="8dp"/> 
 
         <TextView

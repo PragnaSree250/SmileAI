@@ -174,68 +174,41 @@
              </LinearLayout>
 
              <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="32dp"
-                 android:text="Emergency Message to Dentist"
-                 android:textColor="#cbd5e1"
-                 android:textSize="16sp"
-                 android:textStyle="bold"
-                 android:fontFamily="sans-serif"/>
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="32dp"
+                  android:text="Message to Dentist"
+                  android:textColor="#cbd5e1"
+                  android:textSize="16sp"
+                  android:textStyle="bold"
+                  android:fontFamily="sans-serif"/>
 
-             <EditText
-                 android:id="@+id/etEmergencyMessage"
-                 android:layout_width="match_parent"
-                 android:layout_height="120dp"
-                 android:layout_marginTop="12dp"
-                 android:background="@drawable/bg_card_semi_transparent"
-                 android:gravity="top"
-                 android:hint="Type your message here..."
-                 android:padding="16dp"
-                 android:textColor="#f8fafc"
-                 android:textColorHint="#64748b"
-                 android:textSize="14sp" />
+              <EditText
+                  android:id="@+id/etEmergencyMessage"
+                  android:layout_width="match_parent"
+                  android:layout_height="120dp"
+                  android:layout_marginTop="12dp"
+                  android:background="@drawable/bg_card_semi_transparent"
+                  android:gravity="top"
+                  android:hint="Type your message here..."
+                  android:padding="16dp"
+                  android:textColor="#f8fafc"
+                  android:textColorHint="#64748b"
+                  android:textSize="14sp" />
 
-             <Button
-                 android:id="@+id/btnSendMessage"
-                 android:layout_width="match_parent"
-                 android:layout_height="56dp"
-                 android:layout_marginTop="12dp"
-                 android:backgroundTint="#3b82f6"
-                 android:text="Send Message"
-                 android:textAllCaps="false"
-                 android:textColor="#ffffff"
-                 app:cornerRadius="12dp" />
+              <Button
+                  android:id="@+id/btnSendMessage"
+                  android:layout_width="match_parent"
+                  android:layout_height="56dp"
+                  android:layout_marginTop="12dp"
+                  android:backgroundTint="#3b82f6"
+                  android:text="Send Message"
+                  android:textAllCaps="false"
+                  android:textColor="#ffffff"
+                  app:cornerRadius="12dp" />
 
-             <LinearLayout
-                 android:id="@+id/btnEmergency"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="24dp"
-                 android:background="@drawable/bg_button_emergency"
-                 android:gravity="center"
-                 android:paddingVertical="14dp">
-
-                 <ImageView
-                     android:layout_width="20dp"
-                     android:layout_height="20dp"
-                     android:src="@drawable/ic_phone"
-                     app:tint="#b91c1c" />
-
-                 <TextView
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginStart="8dp"
-                     android:text="Emergency Call"
-                     android:textColor="#b91c1c"
-                     android:textSize="16sp"
-                     android:textStyle="bold"
-                     android:fontFamily="sans-serif"/>
-
-             </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+         </LinearLayout>
+     </ScrollView>
 
     <!-- Bottom Navigation -->
     <LinearLayout

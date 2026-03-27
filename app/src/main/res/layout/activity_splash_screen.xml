@@ -103,4 +103,17 @@
         android:elevation="8dp"
         android:stateListAnimator="@null"/>
 
+    <!-- Powered By Footer -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="powered by SIMTAS engineering"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-light"
+        android:letterSpacing="0.05"/>
+
 </RelativeLayout>

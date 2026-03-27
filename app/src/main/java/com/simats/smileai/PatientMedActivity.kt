@@ -16,7 +16,7 @@ class PatientMedActivity : AppCompatActivity() {
         val navCases = findViewById<LinearLayout>(R.id.navCases)
         val navReports = findViewById<LinearLayout>(R.id.navReports)
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
-        val btnEmergency = findViewById<LinearLayout>(R.id.btnEmergency)
+
 
         btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
@@ -42,11 +42,7 @@ class PatientMedActivity : AppCompatActivity() {
             overridePendingTransition(0, 0)
         }
 
-        btnEmergency.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = android.net.Uri.parse("tel:04426801551") // Clinic number
-            startActivity(intent)
-        }
+
 
         findViewById<android.widget.Button>(R.id.btnSendMessage).setOnClickListener {
             sendEmergencyMessage()
@@ -65,27 +61,25 @@ class PatientMedActivity : AppCompatActivity() {
         }
 
         val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)
-        val patientId = sharedPref.getString("patient_clinical_id", "") ?: ""
-        
-        val messageData = mapOf(
-            "patient_id" to patientId,
-            "message" to message
-        )
+        val patientId = sharedPref.getString("patient_clinical_id", "") ?: "PT-UNKNOWN"
+        val patientName = sharedPref.getString("user_name", "Patient")
 
-        com.simats.smileai.network.RetrofitClient.instance.sendEmergencyMessage(messageData).enqueue(object : retrofit2.Callback<com.simats.smileai.network.ApiResponse> {
-            override fun onResponse(call: retrofit2.Call<com.simats.smileai.network.ApiResponse>, response: retrofit2.Response<com.simats.smileai.network.ApiResponse>) {
-                if (response.isSuccessful) {
-                    android.widget.Toast.makeText(this@PatientMedActivity, "Message sent to your dentist!", android.widget.Toast.LENGTH_LONG).show()
-                    etMessage.setText("")
-                } else {
-                    android.widget.Toast.makeText(this@PatientMedActivity, "Failed to send message", android.widget.Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: retrofit2.Call<com.simats.smileai.network.ApiResponse>, t: Throwable) {
-                android.widget.Toast.makeText(this@PatientMedActivity, "Network error: ${t.message}", android.widget.Toast.LENGTH_SHORT).show()
-            }
-        })
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = android.net.Uri.parse("mailto:") // Only email apps should handle this
+            putExtra(Intent.EXTRA_EMAIL, arrayOf("care.smileai@gmail.com")) 
+            putExtra(Intent.EXTRA_SUBJECT, "SmileAI Message from $patientName ($patientId)")
+            putExtra(Intent.EXTRA_TEXT, message)
+        }
+
+        try {
+            startActivity(Intent.createChooser(intent, "Send message via..."))
+            etMessage.setText("")
+            android.widget.Toast.makeText(this, "Opening email app...", android.widget.Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            android.widget.Toast.makeText(this, "No email app found", android.widget.Toast.LENGTH_SHORT).show()
+        }
     }
+
 
     private fun fetchMedications() {
         val sharedPref = getSharedPreferences("SmileAI", MODE_PRIVATE)

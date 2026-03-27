@@ -25,7 +25,7 @@ class PatientDashboardActivity : AppCompatActivity() {
         val firstName = userName.split(" ").firstOrNull() ?: "Patient"
         
         val tvGreeting = findViewById<TextView>(R.id.tvPatientGreetingName)
-        tvGreeting.text = "$firstName \uD83D\uDC4B ✨ 🦷"
+        tvGreeting.text = "$firstName ✨ 🦷"
 
         // Ensure RetrofitClient is initialized
         val accessToken = sharedPref.getString("access_token", "") ?: ""
@@ -88,6 +88,10 @@ class PatientDashboardActivity : AppCompatActivity() {
 
         btnUnread.setOnClickListener {
             startActivity(Intent(this, PatientNotificationsActivity::class.java))
+        }
+
+        findViewById<LinearLayout>(R.id.btnBrushingTimer).setOnClickListener {
+            startActivity(Intent(this, PatientBrushingTimerActivity::class.java))
         }
 
         loadLatestCase()
