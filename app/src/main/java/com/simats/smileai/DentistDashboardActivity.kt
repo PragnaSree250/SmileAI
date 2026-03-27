@@ -40,7 +40,6 @@ class DentistDashboardActivity : ComponentActivity() {
         val btnViewAll = findViewById<TextView>(R.id.btnViewAll)
         val btnAddPatient = findViewById<LinearLayout>(R.id.btnAddPatient)
         val btnSchedule = findViewById<LinearLayout>(R.id.btnSchedule)
-        val btnNotifications = findViewById<ImageView>(R.id.btnNotifications)
         val btnMenu = findViewById<ImageView>(R.id.btnMenu)
         val btnProfile = findViewById<ImageView>(R.id.btnProfile)
 
@@ -74,9 +73,6 @@ class DentistDashboardActivity : ComponentActivity() {
             startActivity(Intent(this, DentistSchedule::class.java))
         }
         
-        btnNotifications.setOnClickListener {
-            startActivity(Intent(this, DentistNotificationsActivity::class.java))
-        }
         
         btnMenu.setOnClickListener {
              startActivity(Intent(this, DentistMenuBarActivity::class.java))

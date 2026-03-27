@@ -54,13 +54,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/btnNotification"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_notification"
-                app:tint="#cbd5e1" />
+                <!-- Notification Button Removed -->
 
             <ImageView
                 android:id="@+id/btnMenu"
@@ -276,6 +270,7 @@
                     android:textColor="#cbd5e1"
                     android:textSize="14sp" />
 
+                 <!-- Notification Button Removed -->
                  <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

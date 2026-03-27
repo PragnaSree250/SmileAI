@@ -41,8 +41,6 @@ class PatientDashboardActivity : AppCompatActivity() {
         val navProfile = findViewById<LinearLayout>(R.id.navProfile)
         val recentActivity1 = findViewById<LinearLayout>(R.id.recentActivity1)
         val btnActiveCases = findViewById<LinearLayout>(R.id.btnActiveCases)
-        val btnNotifications = findViewById<ImageView>(R.id.btnNotifications)
-        val btnUnread = findViewById<LinearLayout>(R.id.btn_unread)
 
         btnNewReports.setOnClickListener {
             val intent = Intent(this, PatientReportActivity::class.java)
@@ -82,13 +80,6 @@ class PatientDashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, PatientCaseActiveActivity::class.java))
         }
 
-        btnNotifications.setOnClickListener {
-            startActivity(Intent(this, PatientNotificationsActivity::class.java))
-        }
-
-        btnUnread.setOnClickListener {
-            startActivity(Intent(this, PatientNotificationsActivity::class.java))
-        }
 
         findViewById<LinearLayout>(R.id.btnBrushingTimer).setOnClickListener {
             startActivity(Intent(this, PatientBrushingTimerActivity::class.java))
@@ -129,7 +120,6 @@ class PatientDashboardActivity : AppCompatActivity() {
                     if (body?.status == "success") {
                         findViewById<TextView>(R.id.tvActiveCasesCount).text = body.active_cases?.toString() ?: "0"
                         findViewById<TextView>(R.id.tvNewReportsCount).text = body.total_reports?.toString() ?: "0"
-                        findViewById<TextView>(R.id.tvUnreadCount).text = body.unread_notifications?.toString() ?: "0"
                     }
                 }
             }

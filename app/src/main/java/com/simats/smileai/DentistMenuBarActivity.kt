@@ -16,9 +16,7 @@ class DentistMenuBarActivity : ComponentActivity() {
 
         val btnDashboard = findViewById<LinearLayout>(R.id.btnDashboard)
         val btnCases = findViewById<LinearLayout>(R.id.btnCases)
-        val btnNotifications = findViewById<LinearLayout>(R.id.btnNotifications)
         val btnProfile = findViewById<LinearLayout>(R.id.btnProfile)
-        val btnSettings = findViewById<LinearLayout>(R.id.btnSettings)
         val btnLogout = findViewById<LinearLayout>(R.id.btnLogout)
         val btnClose = findViewById<ImageView>(R.id.btnClose)
         
@@ -47,20 +45,12 @@ class DentistMenuBarActivity : ComponentActivity() {
             finish()
         }
 
-        btnNotifications.setOnClickListener {
-             startActivity(Intent(this, DentistNotificationsActivity::class.java))
-             finish()
-        }
 
         btnProfile.setOnClickListener {
              startActivity(Intent(this, DentistProfileActivity::class.java))
              finish()
         }
         
-        btnSettings.setOnClickListener {
-             startActivity(Intent(this, DentistSettingsActivity::class.java))
-             finish()
-        }
 
         btnLogout.setOnClickListener {
             startActivity(Intent(this, CommonLogOutActivity::class.java))

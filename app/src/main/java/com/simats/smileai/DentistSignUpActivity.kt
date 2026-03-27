@@ -48,6 +48,13 @@ class DentistSignUpActivity : ComponentActivity() {
                 return@setOnClickListener
             }
 
+            // Validation: Name (Alphabets only)
+            val nameRegex = Regex("^[a-zA-Z\\s]+$")
+            if (!name.matches(nameRegex)) {
+                Toast.makeText(this, "Invalid name. Only alphabets are allowed.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
 
 
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() || !email.endsWith(".com")) {

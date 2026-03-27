@@ -35,7 +35,6 @@ class DentistAllCasesActivity : ComponentActivity() {
         val etSearch = findViewById<EditText>(R.id.etSearch)
         val btnBack = findViewById<LinearLayout>(R.id.btnBack)
         
-        val btnNotification = findViewById<ImageView>(R.id.btnNotification)
         val btnMenu = findViewById<ImageView>(R.id.btnMenu)
 
         // Restore token
@@ -59,9 +58,6 @@ class DentistAllCasesActivity : ComponentActivity() {
             showFilterDialog()
         }
         
-        btnNotification?.setOnClickListener {
-            startActivity(Intent(this, DentistNotificationsActivity::class.java))
-        }
         
         btnMenu?.setOnClickListener {
             startActivity(Intent(this, DentistMenuBarActivity::class.java))

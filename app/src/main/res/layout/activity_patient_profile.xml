@@ -72,50 +72,43 @@
                     android:orientation="vertical"
                     android:padding="24dp">
 
-                    <FrameLayout
-                        android:layout_width="100dp"
-                        android:layout_height="100dp">
-                        
-                        <TextView
-                            android:id="@+id/tvAvatarInitial"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_avatar_circle_blue"
-                            android:gravity="center"
-                            android:text="SJ"
-                            android:textColor="#FFFFFF"
-                            android:textSize="32sp"
-                            android:textStyle="bold" />
-                        
-                        <ImageView
-                            android:id="@+id/ivProfilePhoto"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:visibility="gone" />
-                        
-                        <ImageView
-                            android:id="@+id/btnEditPhoto"
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_gravity="bottom|end"
-                            android:background="@drawable/bg_circle_white"
-                            android:padding="6dp"
-                            android:src="@drawable/ic_edit"
-                            app:tint="#1D4ED8"
-                            android:clickable="true"
-                            android:focusable="true" />
-                    </FrameLayout>
-
                     <TextView
-                        android:id="@+id/tvPatientName"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvAvatarInitial"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="@drawable/bg_avatar_circle_blue"
+                        android:gravity="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        tools:text="S" />
+
+                    <EditText
+                        android:id="@+id/etFirstName"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Sarah Johnson"
+                        android:background="@drawable/bg_input_border_black"
+                        android:gravity="center"
+                        android:hint="First Name"
                         android:textColor="#0F172A"
-                        android:textSize="22sp" />
+                        android:textSize="18sp"
+                        android:padding="8dp"/>
+
+                    <EditText
+                        android:id="@+id/etLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input_border_black"
+                        android:gravity="center"
+                        android:hint="Last Name"
+                        android:textColor="#0F172A"
+                        android:textSize="18sp"
+                        android:padding="8dp"/>
 
                     <TextView
                         android:id="@+id/tvPatientId"
@@ -202,13 +195,13 @@
                                 android:id="@+id/etPhoneNumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@null"
+                                android:background="@drawable/bg_input_border_black"
                                 android:fontFamily="sans-serif-medium"
                                 android:text="+1 (555) 123-4567"
                                 android:textColor="#0F172A"
                                 android:textSize="15sp"
                                 android:inputType="phone"
-                                android:paddingVertical="4dp"/>
+                                android:padding="10dp"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -288,41 +281,7 @@
                     android:orientation="vertical"
                     android:padding="8dp">
 
-                    <LinearLayout
-                        android:id="@+id/btnNotifications"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:padding="12dp">
-
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:background="@drawable/bg_icon_circle_blue_light"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_notification"
-                            app:tint="#1D4ED8" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="Notifications"
-                            android:textColor="#334155"
-                            android:textSize="15sp" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_right"
-                            app:tint="#94A3B8" />
-                    </LinearLayout>
+                    <!-- Notifications Removed -->
 
                     <View
                         android:layout_width="match_parent"
